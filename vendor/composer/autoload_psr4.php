@@ -8,4 +8,9 @@ $baseDir = dirname($vendorDir);
 return array(
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
     'Symfony\\Component\\VarDumper\\' => array($vendorDir . '/symfony/var-dumper'),
+    'App\\Repositories\\' => array($baseDir . '/App/Repositories'),
+    'App\\Models\\' => array($baseDir . '/App/Models'),
+    'App\\Interfaces\\' => array($baseDir . '/App/Interfaces'),
+    'App\\Controllers\\' => array($baseDir . '/App/Controllers'),
+    'App\\Classes\\' => array($baseDir . '/App/Classes'),
 );
