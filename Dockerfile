@@ -2,6 +2,8 @@
 FROM php:8.2-apache
 # Enable Apache modules
 RUN a2enmod rewrite
+# Permitir .htaccess em /var/www/html
+RUN sed -i 's/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
 # Install any extensions you need
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 # Set the working directory to /var/www/html
