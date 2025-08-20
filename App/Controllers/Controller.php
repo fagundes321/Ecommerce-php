@@ -29,4 +29,16 @@ class Controller{
 
         return ucfirst(DEFAULT_CONTROLLER).'Controller';
     }
+
+    public function controller(){
+        $controller = $this->getController();
+
+        foreach (self::FOLDERS_CONTROLLER as $folderController) {
+            if (class_exists(self::NAMESPACE_CONTROLLER.$folderController.'\\'.$controller)) {
+                return self::NAMESPACE_CONTROLLER.$folderController.'\\'.$controller;
+            }
+        }
+        // caso não tiver nenhuma controller ele cospe erro
+        return self::ERROR_CONTROLLER;
+    }
 }

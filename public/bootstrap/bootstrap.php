@@ -2,5 +2,5 @@
 
 $controller = new App\Controllers\Controller;
 echo '<pre>'; 
-dd($controller->getController()); 
+dd($controller->controller()); 
 echo '</pre>'; exit;
