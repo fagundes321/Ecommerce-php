@@ -23,7 +23,10 @@ class Controller{
         if (!$this->uri->emptyUri()){
             $explodeUri = array_filter(explode('/', $this->uri->getUri()));
 
+            // aqui deixo a primeira letra maiuscula e pega a primeira parte da URI
             return ucfirst($explodeUri[1].'Controller');
         }
+
+        return ucfirst(DEFAULT_CONTROLLER).'Controller';
     }
 }
