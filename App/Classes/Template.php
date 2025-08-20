@@ -14,7 +14,7 @@ class Template
 
     public function init()
     {
-        $twig = new \Twig\Environment($this->loader(), [
+        return new \Twig\Environment($this->loader(), [
             'debug' => true,
             'auto_reload' => true,
             // 'cache' => __DIR__ . '/../../cache/twig' // descomente se quiser cache
