@@ -3,7 +3,7 @@ use App\Classes\Template;
 use App\Classes\Parameters;
 
 $parameters = new Parameters;
-dump($parameters->explodeParameters());
+//dump($parameters->explodeParameters());
 
 
 
