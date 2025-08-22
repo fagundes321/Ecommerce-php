@@ -6,6 +6,8 @@ use App\Interfaces\InterfaceConnectDatabase;
 use PDO;
 use PDOException;
 
+
+
 class ConnectPdoDatabase implements InterfaceConnectDatabase{
 
     private $pdo;
