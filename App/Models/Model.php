@@ -22,20 +22,22 @@ class Model
     public function fetchAll()
     {
 
-        $sql - "SELECT * FROM {$this->table}";
+
+        $sql = "SELECT * FROM {$this->table}";
         $this->typeDatabase->prepare($sql);
         $this->typeDatabase->execute();
         return $this->typeDatabase->fetchAll();
     }
 
     // select * from produtor where categoria = 1
-    public function find($field, $value, $fetch = null) 
+    public function find($field, $value, $fetch = null)
     {
 
         $sql = "SELECT * FROM {$this->table} where $field = ?";
         $this->typeDatabase->prepare($sql);
         $this->typeDatabase->bindValue(1, $value);
         $this->typeDatabase->execute();
+
         return ($fetch == null) ? $this->typeDatabase->fetch() : $this->typeDatabase->fetchAll();
     }
 }

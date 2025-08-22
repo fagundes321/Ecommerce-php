@@ -12,10 +12,13 @@ class TypeDatabase
     public function __construct(InterfaceTypeDatabase $interfaceTypeDatabase)
     {
         $this->interfaceTypeDatabase = $interfaceTypeDatabase;
+        
     }
 
     public function getDatabase()
     {
         return $this->interfaceTypeDatabase;
+
+        
     }
 }
