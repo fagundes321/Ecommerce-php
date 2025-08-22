@@ -10,6 +10,7 @@ $parameters = new Parameters;
 $template = new Template;
 $twig = $template->init();
 
+$twig->addFunction($site_url);
 
 /**
  * chamando o Controller digitado na url
