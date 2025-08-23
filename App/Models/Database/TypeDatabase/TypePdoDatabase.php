@@ -18,7 +18,6 @@ class TypePdoDatabase implements InterfaceTypeDatabase
         $this->pdo = $pdo->connectDatabase();
     }
 
-
     public function prepare($sql)
     {
         $this->objectPdo = $this->pdo->prepare($sql);
@@ -36,18 +35,16 @@ class TypePdoDatabase implements InterfaceTypeDatabase
 
     public function rowCount()
     {
-        $this->objectPdo->rowCount();
+        return $this->objectPdo->rowCount();
     }
 
     public function fetch()
     {
-
-        $this->objectPdo->fetch();
+        return $this->objectPdo->fetch();
     }
 
     public function fetchAll()
     {
-
-        $this->objectPdo->fetchAll();
+        return $this->objectPdo->fetchAll();
     }
 }

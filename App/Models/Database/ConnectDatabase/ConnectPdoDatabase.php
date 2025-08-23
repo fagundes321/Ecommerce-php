@@ -16,7 +16,7 @@ class ConnectPdoDatabase implements InterfaceConnectDatabase{
     {
         try {
             $this->pdo = new PDO(
-                "mysql:host=mysql-db;dbname=ecommerce;charset=utf8",
+                "mysql:host=mysql-db;dbname=ecommerce;charset=utf8mb4",
                 "db_user",
                 "123"
             );
