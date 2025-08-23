@@ -10,7 +10,7 @@ use App\Models\Database\TypeDatabase\TypePdoDatabase;
 class Model
 {
 
-    private $typeDatabase;
+    public $typeDatabase;
 
     public function __construct()
     {

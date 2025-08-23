@@ -17,7 +17,6 @@ class TypeMysqliDatabase implements InterfaceTypeDatabase
         $this->mysqli = $mysqli->connectDatabase();
     }
 
-
     public function prepare($sql)
     {
         $this->objectMysqli = $this->mysqli->prepare($sql);
@@ -25,32 +24,37 @@ class TypeMysqliDatabase implements InterfaceTypeDatabase
 
     public function bindValue($key, $value)
     {
-        $type = substr(gettype($value), 0, 1);
+        $type = match (gettype($value)) {
+            'integer' => 'i',
+            'double'  => 'd',
+            'string'  => 's',
+            default   => 'b'
+        };
+
         $this->objectMysqli->bind_param($type, $value);
     }
 
     public function execute()
     {
-        $this->objectMysqli->bind_param();
+        return $this->objectMysqli->execute();
     }
 
     public function rowCount()
     {
-        $this->objectMysqli->num_rows();
+        return $this->objectMysqli->num_rows;
     }
 
     public function fetch()
     {
-        $this->objectMysqli->get_result()->fetch_object();
+        return $this->objectMysqli->get_result()->fetch_object();
     }
 
     public function fetchAll()
     {
         $data = [];
-
-        $result = $this->objectMysqli->get_result;
-        while ($resultFetch = $result->fetch_assoc) {
-            $data = $resultFetch;
+        $result = $this->objectMysqli->get_result();
+        while ($resultFetch = $result->fetch_assoc()) {
+            $data[] = $resultFetch;
         }
         return $data;
     }
