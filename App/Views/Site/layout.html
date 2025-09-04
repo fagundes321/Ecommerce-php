@@ -3,22 +3,74 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+        <link
+            rel="stylesheet"
+            href="node_modules/bootstrap/dist/css/bootstrap.min.css"
+        />
         <link rel="stylesheet" href="{{ site_url }}/assets/css/layout.css" />
 
         <title>{{ titulo }}</title>
     </head>
 
     <body>
-        <div class="layout_site">
-            <div class="navbar">
+        <div class="layout_site container">
+            <div class="main">
                 <!-- include do header -->
                 <div id="navbar_content">
                     <div id="navbar_tab">
                         <!-- include do menu -->
+                        {% include 'includes/site_navbar.html' %}
                     </div>
                     <div class="crumb_navigation">
-                        <!-- breadcrumb -->
+                        <div id="carouselExample" class="carousel slide">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img
+                                        src="..."
+                                        class="d-block w-100"
+                                        alt="..."
+                                    />
+                                </div>
+                                <div class="carousel-item">
+                                    <img
+                                        src="..."
+                                        class="d-block w-100"
+                                        alt="..."
+                                    />
+                                </div>
+                                <div class="carousel-item">
+                                    <img
+                                        src="..."
+                                        class="d-block w-100"
+                                        alt="..."
+                                    />
+                                </div>
+                            </div>
+                            <button
+                                class="carousel-control-prev"
+                                type="button"
+                                data-bs-target="#carouselExample"
+                                data-bs-slide="prev"
+                            >
+                                <span
+                                    class="carousel-control-prev-icon"
+                                    aria-hidden="true"
+                                ></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button
+                                class="carousel-control-next"
+                                type="button"
+                                data-bs-target="#carouselExample"
+                                data-bs-slide="next"
+                            >
+                                <span
+                                    class="carousel-control-next-icon"
+                                    aria-hidden="true"
+                                ></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
                     </div>
                     <div class="left_content">
                         <div class="title_box">Categorias</div>
@@ -92,13 +144,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="title_box">
-                                Marcas
-                            </div>
+                            <div class="title_box">Marcas</div>
                             <!-- include das Marcas -->
-                             <div class="banner_ads">
+                            <div class="banner_ads">
                                 <!-- Banner de promoção, propaganda -->
-                             </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -107,7 +157,8 @@
                         <!-- imagem footer -->
                     </div>
                     <div class="center_footer">
-                        {{ titulo }}.Todos os direitos reservados {{ 'now' | date('d/m/Y') }} <br>
+                        {{ titulo }}.Todos os direitos reservados {{ 'now' |
+                        date('d/m/Y') }} <br />
                         <!-- imagem da loja -->
                     </div>
                     <div class="right_footer">
@@ -120,8 +171,9 @@
                 </div>
             </div>
         </div>
-       <!-- {% block site_content %}{% endblock %} -->
+        <!-- {% block site_content %}{% endblock %} -->
         <script src="{{ site_url }}/bower_components/jquery/dist/jquery.js"></script>
-        <script src="{{ site_url }}/assets/js/site/carrinho.js"></script>    
+        <script src="{{ site_url }}/assets/js/site/carrinho.js"></script>
+        <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>

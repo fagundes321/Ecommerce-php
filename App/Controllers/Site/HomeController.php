@@ -4,14 +4,15 @@ namespace App\Controllers\Site;
 
 use App\Controllers\BaseController;
 use App\Repositories\Site\ProdutoRepository;
+
 class HomeController extends BaseController
 {
     public function index()
     {
         $produtoRepository = new ProdutoRepository;
 
-        dump($produtoRepository->listarProdutosOrdenadosComLimite(3));
-        
+      
+
         $dados = [
             'titulo' => 'InovaTech | Loja Virtual',
             'nome'  => 'Victor'
@@ -24,7 +25,7 @@ class HomeController extends BaseController
         // $template = $this->twig->load('site_home.html');
         // echo $template->render($dados);
 
-   
-        
+
+
     }
 }
