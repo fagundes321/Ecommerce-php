@@ -1,106 +1,106 @@
-.site_navbar {
-    background-color: #000000;
-    padding: 2rem 1rem;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    transition: background 0.3s ease, box-shadow 0.3s ease;
-  }
+.navbar-premium {
+  background-color: #000000;
+  padding: 2rem 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
 
-  .site_navbar.scrolled {
-    background-color: #000;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  }
+.navbar-premium.scrolled {
+  background-color: #000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
 
-  /* Brand */
-  .site_navbar .site_navbar-brand {
-    color: #fff;
-    font-weight: 600;
-    font-size: 1.4rem;
-  }
+/* Brand */
+.navbar-premium .navbar-brand {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.4rem;
+}
 
-  /* Centraliza itens do menu */
-  .site_navbar .site_navbar-nav {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin: 0;
-  }
+/* Centraliza itens do menu */
+.navbar-premium .navbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0;
+}
 
-  .site_navbar .site_navbar-link {
-    color: white;
-    font-size: 15px;
-    font-weight: 400;
-    transition: color 0.3s ease;
-  }
+.navbar-premium .nav-link {
+  color: white;
+  font-size: 15px;
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
 
-  .site_navbar .site_navbar-link:hover,
-  .site_navbar .site_navbar-link:focus {
-    color: #fff;
-    text-decoration: underline;
-  }
+.navbar-premium .nav-link:hover,
+.navbar-premium .nav-link:focus {
+  color: #fff;
+  text-decoration: underline;
+}
 
-  /* Dropdown */
-  .site_navbar .site_navbar-dropdown-menu {
-    background-color: #111;
-    border: none;
-    min-width: 200px;
-  }
+/* Dropdown */
+.navbar-premium .dropdown-menu {
+  background-color: #111;
+  border: none;
+  min-width: 200px;
+}
 
-  .site_navbar .site_navbar-dropdown-item {
-    color: #ccc;
-    transition: color 0.2s ease;
-  }
+.navbar-premium .dropdown-item {
+  color: #ccc;
+  transition: color 0.2s ease;
+}
 
-  .site_navbar .site_navbar-dropdown-item:hover {
-    color: #fff;
-    background-color: transparent;
-  }
+.navbar-premium .dropdown-item:hover {
+  color: #fff;
+  background-color: transparent;
+}
 
-  /* Search */
-  .site_navbar .site_navbar-search {
-    border-radius: 50px;
-    border: none;
-    background-color: #6e6969;
-    color: #fff;
-    padding: 0.4rem 1rem;
-    width: 200px;
-    transition: width 0.3s ease;
-  }
+/* Search */
+.navbar-premium .form-control {
+  border-radius: 50px;
+  border: none;
+  background-color: #6e6969;
+  color: #fff;
+  padding: 0.4rem 1rem;
+  width: 200px;
+  transition: width 0.3s ease;
+}
 
-  .site_navbar .site_navbar-search:focus {
-    width: 280px;
-    outline: none;
-    background-color: #333;
-  }
+.navbar-premium .form-control:focus {
+  width: 280px;
+  outline: none;
+  background-color: #333;
+}
 
-  .site_navbar .site_navbar-btn-search {
-    background-color: #0071e3;
-    border: none;
-    color: #fff;
-    padding: 0.35rem 1rem;
-    border-radius: 50px;
-    margin-left: 0.5rem;
-    transition: background 0.3s ease;
-  }
+.navbar-premium .btn-search {
+  background-color: #0071e3;
+  border: none;
+  color: #fff;
+  padding: 0.35rem 1rem;
+  border-radius: 50px;
+  margin-left: 0.5rem;
+  transition: background 0.3s ease;
+}
 
-  .site_navbar .site_navbar-btn-search:hover {
-    background-color: #005bb5;
-  }
+.navbar-premium .btn-search:hover {
+  background-color: #005bb5;
+}
 
-  /* Ícones */
-  .site_navbar .site_navbar-icon {
-    color: #ccc;
-    font-size: 1.2rem;
-    margin-left: 1rem;
-    transition: color 0.3s ease;
-  }
+/* Ícones */
+.navbar-premium .icon-btn {
+  color: #ccc;
+  font-size: 1.2rem;
+  margin-left: 1rem;
+  transition: color 0.3s ease;
+}
 
-  .site_navbar .site_navbar-icon:hover {
-    color: #fff;
-  }
+.navbar-premium .icon-btn:hover {
+  color: #fff;
+}
 
-  /* Flex container */
-  .site_navbar .site_navbar-collapse {
-    display: flex !important;
-    align-items: center;
-    justify-content: space-between;
-  }
+/* Flex container */
+.navbar-premium .navbar-collapse {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+}
