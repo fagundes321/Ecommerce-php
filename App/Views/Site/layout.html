@@ -1,17 +1,5 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link
-            rel="stylesheet"
-            href="node_modules/bootstrap/dist/css/bootstrap.min.css"
-        />
-        <link rel="stylesheet" href="{{ site_url }}/assets/css/layout.css" />
 
-        <title>{{ titulo }}</title>
-    </head>
-
+{% include 'includes/head.html' %}
     <body>
         <div class="layout_site container">
             <div class="main">
@@ -21,13 +9,15 @@
                         <!-- include do menu -->
                         {% include 'includes/site_navbar.html' %}
                     </div>
-                    <div class="crumb_navigation">
-                       {% include 'includes/site_carousel_01.html'%}
+                    <div class="corpo-carousel">
+                        <!-- include do carousel -->
+                        {% include 'includes/site_carousel_01.html'%}
                     </div>
                     <div class="left_content">
                         <div class="title_box">Categorias</div>
                         <ul class="left_menu">
                             <!-- include left_menu -->
+                            {% include 'includes/site_cards_01.html'%}
                         </ul>
                         <div class="title_box">Promoção</div>
                         <div class="border_box">
@@ -127,5 +117,8 @@
         <script src="{{ site_url }}/bower_components/jquery/dist/jquery.js"></script>
         <script src="{{ site_url }}/assets/js/site/carrinho.js"></script>
         <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+        <!-- scripts js -->
+        <script src="{{ site_url }}/public/assets/js/site/includes/site_navbar.js"></script>
     </body>
 </html>
