@@ -1,8 +1,9 @@
 .navbar-premium {
   background-color: #000000;
-  padding: 2rem 1rem;
+  padding: 3rem 1rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   transition: background 0.3s ease, box-shadow 0.3s ease;
+  
 }
 
 .navbar-premium.scrolled {
@@ -22,7 +23,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin: 0;
+  margin-left: 50px;
 }
 
 .navbar-premium .nav-link {
@@ -35,7 +36,8 @@
 .navbar-premium .nav-link:hover,
 .navbar-premium .nav-link:focus {
   color: #fff;
-  text-decoration: underline;
+  text-decoration: none;
+  
 }
 
 /* Dropdown */
@@ -57,19 +59,22 @@
 
 /* Search */
 .navbar-premium .form-control {
-  border-radius: 50px;
+  border-radius: 50px 0px 0px 50px;
   border: none;
-  background-color: #6e6969;
-  color: #fff;
-  padding: 0.4rem 1rem;
+  background-color: #fff;
+  color: black;
+  padding: 0.4rem 2rem;
   width: 200px;
+
   transition: width 0.3s ease;
+  text-align: center;
 }
 
 .navbar-premium .form-control:focus {
   width: 280px;
   outline: none;
-  background-color: #333;
+  background-color: #fff;
+  text-align: center;
 }
 
 .navbar-premium .btn-search {
@@ -77,10 +82,12 @@
   border: none;
   color: #fff;
   padding: 0.35rem 1rem;
-  border-radius: 50px;
-  margin-left: 0.5rem;
+  border-radius: 0px 50px 50px 0px;
+
   transition: background 0.3s ease;
 }
+
+
 
 .navbar-premium .btn-search:hover {
   background-color: #005bb5;
