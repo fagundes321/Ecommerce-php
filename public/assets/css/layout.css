@@ -1,5 +1,8 @@
 body{
     background-color: #FFFFFF;
+      font-family: 'Source Sans Pro', sans-serif;
+  ; /* ajuste esse valor para a altura real da sua navbar */
+
 }
 
 .flex-container {

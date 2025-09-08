@@ -1,0 +1,17 @@
+.banner_01 {
+    display: flex;
+    justify-content: center; /* centraliza horizontalmente */
+    align-items: center;     /* centraliza verticalmente */
+    text-align: center;
+    width: 100%;             /* ocupa toda a largura da tela */
+    margin-top: 10px;
+}
+
+.banner_fundo {
+    background-color: black;
+    width: 100%;             /* ocupa toda a largura do container */
+    max-width: 1440px;       /* largura máxima, mantém proporção em telas grandes */
+    height: auto;            /* ajusta altura automaticamente */
+    aspect-ratio: 16/9;      /* mantém proporção 16:9 */
+    border-radius: 12px;     /* opcional: cantos arredondados */
+}

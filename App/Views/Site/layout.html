@@ -1,119 +1,149 @@
-
 {% include 'includes/config/head.html' %}
-    <body>
-        <div class="layout_site ">
-            <div class="main">
-                <!-- include do header -->
-                <div id="navbar_content ">
-                    <div id="navbar_tab ">
-                        <!-- include do menu -->
-                        {% include 'includes/site_navbar.html' %}
-                    </div>
-                    <div class="corpo-carousel">
-                        <!-- include do carousel -->
-                        {% include 'includes/site_carousel_01.html'%}
-                    </div>
-                    <div class="left_content flex-container">
-                        <!-- <div class="title_box">Categorias</div> -->
-                        <ul class="left_menu">
-                            <!-- include left_menu -->
-                            {% include 'includes/site_cards_01.html'%}
-                        </ul>
-                        <div class="title_box">Promoção</div>
-                        <div class="border_box">
-                            <div class="product_tile">
-                                <!-- imagem produto promocao -->
-                            </div>
-                            <div class="product_image">
-                                <!-- imagem do produto em promoção -->
-                            </div>
-                            <div class="prod_price">
-                                <!-- preço do produto -->
-                            </div>
-                        </div>
-                    </div>
-                    <div class="title_box">Newsletter</div>
-                    <div class="border_box">
-                        <input
-                            type="text"
-                            name="Newsletter"
-                            class="newsletter"
-                            value="Seu email"
-                        />
-                        <a href="" class="join">cadastrar email</a>
-                        <div class="banner_ads">
-                            <a href="">
-                                <!-- banner promocao, propaganda -->
-                            </a>
-                        </div>
-                    </div>
-                    <div class="center_content">
-                        {% block content %}{% endblock %}
-                    </div>
-                    <div class="right_content">
-                        <div class="shopping_cart">
-                            <div class="cart_title">Carrinho de compras</div>
-                            <div class="cart_details">
-                                <span id="products_cart">
-                                    <!-- numero de produtos no carrinho -->
-                                </span>
-                                <br />
-                                <span class="border_cart"
-                                    >Total:
-                                    <span class="price">
-                                        <!-- Total de compras no carrinho -->
-                                    </span>
-                                </span>
-                            </div>
-                            <div class="cart_icon">
-                                <a
-                                    href=""
-                                    title="header=[Checkout] body=[&nbsp;] fade=[on]"
-                                ></a>
-                                <!-- icon carrinho -->
-                            </div>
-                            <div class="title_box">Novidades</div>
-                            <div class="border_box">
-                                <div class="product_title">
-                                    <!-- titulo produto novidade -->
-                                </div>
-                                <div class="product image">
-                                    <!-- imagem do  produto novidade -->
-                                </div>
-                                <div class="prod_price">
-                                    <div class="price">
-                                        <!-- preço do produto novidade -->
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="title_box">Marcas</div>
-                            <!-- include das Marcas -->
-                            <div class="banner_ads">
-                                <!-- Banner de promoção, propaganda -->
-                            </div>
-                        </div>
+<body>
+    <div class="layout_site">
+        <div class="main">
+
+            <!-- include do header -->
+            <div id="navbar_content">
+                <div id="navbar_tab">
+                    <!-- include do menu -->
+                    {% include 'includes/site_navbar.html' %}
+                </div>
+
+                <div class="corpo-carousel">
+                    <!-- include do carousel -->
+                    {% include 'includes/site_carousel_01.html' %}
+                </div>
+
+            <!-- Banner 01 -->
+                <div class="banner_01 flex-container">
+                    <div class="banner_fundo">
+                        {% include 'includes/site_banner_01.html' %}
                     </div>
                 </div>
-                <div class="footer">
-                    <div class="left_footer">
-                        <!-- imagem footer -->
+
+            <!-- CARDS 01 -->
+                <div class="flex-container">
+                  
+                    <ul class="left_menu">
+                    
+                        {% include 'includes/site_cards_01.html' %}
+                    </ul>
+                </div>
+
+            <!-- Banner 02 -->
+                <div class="banner_01 flex-container">
+                    <div class="banner_fundo">
+                        {% include 'includes/site_banner_02.html' %}
                     </div>
-                    <div class="center_footer">
-                        {{ titulo }}.Todos os direitos reservados {{ 'now' |
-                        date('d/m/Y') }} <br />
-                        <!-- imagem da loja -->
+                </div>
+
+            <!-- CARDS 02 -->
+                <div class="flex-container">
+                    <ul class="left_menu">
+                        {% include 'includes/site_cards_02.html' %}
+                    </ul>
+                </div>
+
+                <div class="title_box">Promoção</div>
+                <div class="border_box">
+                    <div class="product_tile">
+                        <!-- imagem produto promocao -->
                     </div>
-                    <div class="right_footer">
-                        <a href="#">Home</a>
-                        <a href="#">About</a>
-                        <a href="#">sitemap</a>
-                        <a href="#">rss</a>
-                        <a href="#">Contact us</a>
+                    <div class="product_image">
+                        <!-- imagem do produto em promoção -->
+                    </div>
+                    <div class="prod_price">
+                        <!-- preço do produto -->
+                    </div>
+                </div>
+
+                <div class="title_box">Newsletter</div>
+                <div class="border_box">
+                    <input
+                        type="text"
+                        name="Newsletter"
+                        class="newsletter"
+                        value="Seu email"
+                    />
+                    <a href="" class="join">cadastrar email</a>
+                    <div class="banner_ads">
+                        <a href="">
+                            <!-- banner promocao, propaganda -->
+                        </a>
+                    </div>
+                </div>
+
+                <div class="center_content">
+                    {% block content %}{% endblock %}
+                </div>
+
+                <div class="right_content">
+                    <div class="shopping_cart">
+                        <div class="cart_title">Carrinho de compras</div>
+                        <div class="cart_details">
+                            <span id="products_cart">
+                                <!-- numero de produtos no carrinho -->
+                            </span>
+                            <br />
+                            <span class="border_cart">
+                                Total:
+                                <span class="price">
+                                    <!-- Total de compras no carrinho -->
+                                </span>
+                            </span>
+                        </div>
+
+                        <div class="cart_icon">
+                            <a href="" title="header=[Checkout] body=[&nbsp;] fade=[on]"></a>
+                            <!-- icon carrinho -->
+                        </div>
+
+                        <div class="title_box">Novidades</div>
+                        <div class="border_box">
+                            <div class="product_title">
+                                <!-- titulo produto novidade -->
+                            </div>
+                            <div class="product image">
+                                <!-- imagem do produto novidade -->
+                            </div>
+                            <div class="prod_price">
+                                <div class="price">
+                                    <!-- preço do produto novidade -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="title_box">Marcas</div>
+                        <!-- include das Marcas -->
+                        <div class="banner_ads">
+                            <!-- Banner de promoção, propaganda -->
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <div class="footer">
+                <div class="left_footer">
+                    <!-- imagem footer -->
+                </div>
+                <div class="center_footer">
+                    {{ titulo }}. Todos os direitos reservados {{ 'now' | date('d/m/Y') }} <br />
+                    <!-- imagem da loja -->
+                </div>
+                <div class="right_footer">
+                    <a href="#">Home</a>
+                    <a href="#">About</a>
+                    <a href="#">sitemap</a>
+                    <a href="#">rss</a>
+                    <a href="#">Contact us</a>
+                </div>
+            </div>
+
         </div>
-        <!-- scripts -->
-        {% include 'includes/config/scripts.html' %}
-    </body>
+    </div>
+
+    <!-- scripts -->
+    {% include 'includes/config/scripts.html' %}
+</body>
 </html>

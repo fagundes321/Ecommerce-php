@@ -17,3 +17,20 @@ searchInput.addEventListener("blur", () => {
         searchInput.placeholder = originalPlaceholder;
     }
 });
+
+let lastScrollTop = 0;
+const navbar = document.querySelector(".navbar-premium");
+
+window.addEventListener("scroll", () => {
+  let scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+  if (scrollTop > lastScrollTop) {
+    // descendo -> esconde a navbar
+    navbar.classList.add("hidden");
+  } else {
+    // subindo -> mostra a navbar
+    navbar.classList.remove("hidden");
+  }
+
+  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // evita valor negativo
+});
