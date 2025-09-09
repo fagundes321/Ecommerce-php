@@ -12,5 +12,5 @@ $categorias = new TwigFunction('categorias', function () {
     
     $categoriaRepository = new CategoriaRepository;
     dump( $categoriaRepository->listarCategoriasProdutos());
-    exit;
+    
 });
