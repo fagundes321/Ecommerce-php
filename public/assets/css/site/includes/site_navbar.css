@@ -21,7 +21,7 @@
 .navbar-premium .navbar-brand {
     color: #fff;
     font-weight: 600;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
 }
 
 /* Centraliza itens do menu */
@@ -69,14 +69,14 @@
     background-color: #fff;
     color: black;
     padding: 0.4rem 2rem;
-    width: 200px;
+    width: 130px;
 
     transition: width 0.3s ease;
     text-align: center;
 }
 
 .navbar-premium .form-control:focus {
-    width: 280px;
+    width: 175px;
     outline: none;
     background-color: #fff;
     text-align: center;
