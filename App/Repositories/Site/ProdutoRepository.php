@@ -14,11 +14,17 @@ class ProdutoRepository {
         $this->produto = new ProdutoModel;
     }
     
-    public function listarProdutosOrdenadosComLimite($limite){
-        $sql = "SELECT * FROM  {$this->produto->table} ORDER BY produto_destaque = 1 DESC LIMIT {$limite}";
+    public function ultimoProdutoAdicionado(){
+        $sql = "SELECT * FROM  {$this->produto->table} ORDER BY id DESC ";
         $this->produto->typeDatabase->prepare($sql);
         $this->produto->typeDatabase->execute();
         return $this->produto->typeDatabase->fetchAll();
     }
 
+     public function listarProdutosOrdenadosPeloDestaque($limite){
+        $sql = "SELECT * FROM  {$this->produto->table} ORDER BY produto_destaque = 1 DESC LIMIT {$limite}";
+        $this->produto->typeDatabase->prepare($sql);
+        $this->produto->typeDatabase->execute();
+        return $this->produto->typeDatabase->fetchAll();
+    }
 }

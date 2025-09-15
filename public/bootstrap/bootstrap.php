@@ -13,6 +13,8 @@ $twig = $template->init();
 // chamando as funções do functionsTwig
 $twig->addFunction($site_url);
 $twig->addFunction($categorias);
+$twig->addFunction($novidade);
+
 
 /**
  * chamando o Controller digitado na url

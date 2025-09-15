@@ -61,11 +61,11 @@
                 </div>
 
                 <div class="">
-                    <h1 class="flex-container">Recomendados para você</h1>
-                    <div class="flex-container recomendados">
-                        {% include 'includes/recomendation/site_recommended.html' %}
-                    </div>
+                <h1 class="flex-container">Recomendados para você</h1>
+                <div class="swiper-container recomendados  swiper-container"> <!-- Adicionei a classe swiper-container aqui -->
+                    {% include 'includes/recomendation/site_recommended.html' %}
                 </div>
+            </div>
 
                 <div class="title_box">Promoção</div>
                 <div class="border_box">
@@ -119,21 +119,6 @@
                         <div class="cart_icon">
                             <a href="" title="header=[Checkout] body=[&nbsp;] fade=[on]"></a>
                             <!-- icon carrinho -->
-                        </div>
-
-                        <div class="title_box">Novidades</div>
-                        <div class="border_box">
-                            <div class="product_title">
-                                <!-- titulo produto novidade -->
-                            </div>
-                            <div class="product image">
-                                <!-- imagem do produto novidade -->
-                            </div>
-                            <div class="prod_price">
-                                <div class="price">
-                                    <!-- preço do produto novidade -->
-                                </div>
-                            </div>
                         </div>
 
                         <div class="title_box">Marcas</div>
