@@ -11,6 +11,6 @@ $site_url = new \Twig\TwigFunction('site_url', function () {
 $categorias = new TwigFunction('categorias', function () {
     
     $categoriaRepository = new CategoriaRepository;
-    dump( $categoriaRepository->listarCategoriasProdutos());
+    return $categoriaRepository->listarCategoriasProdutos();
     
 });

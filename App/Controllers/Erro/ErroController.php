@@ -2,7 +2,8 @@
 
 namespace App\Controllers\Erro;
 
-class ErroController{
+use App\Controllers\BaseController;
+class ErroController extends BaseController{
     public function index(){
         dump("erro");
     }
