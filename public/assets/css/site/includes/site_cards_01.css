@@ -17,7 +17,7 @@
     width: 345px;
     height: 345px;
     padding: 20px 20px 40px 20px;
-    border: 1px solid #e1e1e1;
+    /* border: 1px solid #e1e1e1; */
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -66,19 +66,3 @@
 }
 
 
-.swiper-container {
-    width: 55%;
-    height: 120%;
-    padding: 20px 0 40px;
-}
-
-.swiper-wrapper {
-    display: flex;
-}
-
-.swiper-slide {
-    flex-shrink: 0;
-      width: 345px;
-    height: 345px;
-    position: relative;
-}

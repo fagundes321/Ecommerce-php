@@ -1,4 +1,5 @@
 {% include 'includes/config/head.html' %}
+
 <body>
     <div class="layout_site">
         <div class="main">
@@ -15,30 +16,30 @@
                     {% include 'includes/carousel/site_carousel_01.html' %}
                 </div>
 
-            <!-- Banner 01 -->
+                <!-- Banner 01 -->
                 <div class="banner_01 flex-container">
                     <div class="banner_fundo">
                         {% include 'includes/banner/site_banner_01.html' %}
                     </div>
                 </div>
 
-            <!-- CARDS 01 -->
+                <!-- CARDS 01 -->
                 <div class="flex-container">
-                  
+
                     <ul class="left_menu">
-                    
+
                         {% include 'includes/cards/site_cards_01.html' %}
                     </ul>
                 </div>
 
-            <!-- Banner 02 -->
+                <!-- Banner 02 -->
                 <div class="banner_01 flex-container">
                     <div class="banner_fundo">
                         {% include 'includes/banner/site_banner_02.html' %}
                     </div>
                 </div>
 
-            <!-- CARDS 02 -->
+                <!-- CARDS 02 -->
                 <div class="flex-container">
                     <ul class="left_menu">
                         {% include 'includes/cards/site_cards_02.html' %}
@@ -46,26 +47,40 @@
                 </div>
 
 
-            <!-- Banner 03 -->
+                <!-- Banner 03 -->
                 <div class="banner_01 flex-container">
                     <div class="banner_fundo">
                         {% include 'includes/banner/site_banner_03.html' %}
                     </div>
                 </div>
 
-            <!-- CARDS 03 -->
+                <!-- CARDS 03 -->
                 <div class="flex-container">
                     <ul class="left_menu">
                         {% include 'includes/cards/site_cards_03.html' %}
                     </ul>
                 </div>
 
-                <div class="">
-                <h1 class="flex-container">Recomendados para você</h1>
-                <div class="swiper-container recomendados  swiper-container"> <!-- Adicionei a classe swiper-container aqui -->
-                    {% include 'includes/recomendation/site_recommended.html' %}
+                <div class="flex-container">
+                    <h1 class="">Novidades</h1>
+                    <div class=" recomendados "> <!-- Adicionei a classe swiper-container aqui -->
+                        {% include 'includes/recomendation/site_recommended.html' %}
+                    </div>
                 </div>
-            </div>
+
+                <div class="flex-container">
+                    <h1 class="">Destaques</h1>
+                    <div class=" recomendados "> <!-- Adicionei a classe swiper-container aqui -->
+                        {% include 'includes/recomendation/site_recommended.html' %}
+                    </div>
+                </div>
+
+                <div class="flex-container">
+                    <h1 class="">Promoções</h1>
+                    <div class=" recomendados "> <!-- Adicionei a classe swiper-container aqui -->
+                        {% include 'includes/recomendation/site_recommended.html' %}
+                    </div>
+                </div>
 
                 <div class="title_box">Promoção</div>
                 <div class="border_box">
@@ -82,12 +97,7 @@
 
                 <div class="title_box">Newsletter</div>
                 <div class="border_box">
-                    <input
-                        type="text"
-                        name="Newsletter"
-                        class="newsletter"
-                        value="Seu email"
-                    />
+                    <input type="text" name="Newsletter" class="newsletter" value="Seu email" />
                     <a href="" class="join">cadastrar email</a>
                     <div class="banner_ads">
                         <a href="">
@@ -153,4 +163,5 @@
     <!-- scripts -->
     {% include 'includes/config/scripts.html' %}
 </body>
+
 </html>

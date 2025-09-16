@@ -16,7 +16,7 @@ $categorias = new TwigFunction('categorias', function () {
     
 });
 
-// Listar as Produtos nos Recomendados
+// Listar as Produtos nos Novidades
 $novidade = new TwigFunction('novidade', function () {
     
     $produtoRepository = new ProdutoRepository;
@@ -24,3 +24,11 @@ $novidade = new TwigFunction('novidade', function () {
     
 });
 
+
+
+$promocao = new TwigFunction('promocao', function () {
+    
+    $produtoRepository = new ProdutoRepository;
+    return $produtoRepository->listarProdutosOrdenadosPelaPromocao();
+    
+});

@@ -27,4 +27,11 @@ class ProdutoRepository {
         $this->produto->typeDatabase->execute();
         return $this->produto->typeDatabase->fetchAll();
     }
+
+      public function listarProdutosOrdenadosPelaPromocao(){
+        $sql = "SELECT * FROM  {$this->produto->table} ORDER BY produto_valor_promocao";
+        $this->produto->typeDatabase->prepare($sql);
+        $this->produto->typeDatabase->execute();
+        return $this->produto->typeDatabase->fetchAll();
+    }
 }
