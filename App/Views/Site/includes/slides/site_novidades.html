@@ -1,0 +1,32 @@
+<div class="swiper">
+    <div class="swiper-wrapper swiper-slide-container">
+        {% for produto in novidade()|slice(0, 10) %}
+        <a href="/produto/{{ produto.id }}" class="produto-link swiper-slide">
+            <div class="slide-card">
+                <img
+                    src="/public/assets/images/produtos/fone-de-ouvido-preto.png"
+                    alt="{{ produto.produto_nome }}"
+                    loading="eager"
+                />
+
+                <h3 class="titulo-produto">{{ produto.produto_nome }}</h3>
+                {% if produto.produto_valor_promocao == null %}
+                <h5 class="produto_preco">R$ {{ produto.produto_valor }}</h5>
+                {% else %}
+                <h5 class="produto_preco">
+                    R$ {{ produto.produto_valor_promocao }} à vista
+                </h5>
+                <h5 class="produto_real">R$ {{ produto.produto_valor }}</h5>
+                {% endif %}
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+
+    <!-- Controles -->
+    <div class="swiper-controls">
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+</div>

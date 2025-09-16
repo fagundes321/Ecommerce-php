@@ -32,7 +32,7 @@ const swiper = new Swiper('.swiper', {
 });
 
 // Animação de entrada
-const cards = document.querySelectorAll(".card-recomendados");
+const cards = document.querySelectorAll(".slide-card");
 const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, index) => {
         if (entry.isIntersecting && !entry.target.classList.contains("visible")) {

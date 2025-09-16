@@ -1,11 +1,12 @@
-<?php 
+<?php
 
 namespace App\Repositories\Site;
 
 use App\Models\Site\ProdutoModel;
 
 
-class ProdutoRepository {
+class ProdutoRepository
+{
 
     private $produto;
 
@@ -13,23 +14,26 @@ class ProdutoRepository {
     {
         $this->produto = new ProdutoModel;
     }
-    
-    public function ultimoProdutoAdicionado(){
+
+    public function ultimoProdutoAdicionado()
+    {
         $sql = "SELECT * FROM  {$this->produto->table} ORDER BY id DESC ";
         $this->produto->typeDatabase->prepare($sql);
         $this->produto->typeDatabase->execute();
         return $this->produto->typeDatabase->fetchAll();
     }
 
-     public function listarProdutosOrdenadosPeloDestaque($limite){
+    public function listarProdutosOrdenadosPeloDestaque($limite)
+    {
         $sql = "SELECT * FROM  {$this->produto->table} ORDER BY produto_destaque = 1 DESC LIMIT {$limite}";
         $this->produto->typeDatabase->prepare($sql);
         $this->produto->typeDatabase->execute();
         return $this->produto->typeDatabase->fetchAll();
     }
 
-      public function listarProdutosOrdenadosPelaPromocao(){
-        $sql = "SELECT * FROM  {$this->produto->table} ORDER BY produto_valor_promocao";
+    public function listarProdutosOrdenadosPelaPromocao()
+    {
+        $sql = "SELECT * FROM  {$this->produto->table} ORDER BY produto_destaque = 1 DESC ";
         $this->produto->typeDatabase->prepare($sql);
         $this->produto->typeDatabase->execute();
         return $this->produto->typeDatabase->fetchAll();
