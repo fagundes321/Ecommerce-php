@@ -3,6 +3,7 @@
 use Twig\TwigFunction;
 use App\Repositories\Site\CategoriaRepository;
 use App\Repositories\Site\ProdutoRepository;
+use App\Classes\BreadCrumb;
 
 $site_url = new \Twig\TwigFunction('site_url', function () {
     return 'http://' . $_SERVER['SERVER_NAME'] . ':8888';
@@ -25,10 +26,19 @@ $novidade = new TwigFunction('novidade', function () {
 });
 
 
-
+// Listar Produtos em promoção
 $promocao = new TwigFunction('promocao', function () {
     
     $produtoRepository = new ProdutoRepository;
     return $produtoRepository->listarProdutosOrdenadosPelaPromocao();
     
 });
+
+// BreadCrumb
+$breadCrumb = new TwigFunction('breadCrumb', function () {
+   
+    $breadCrumb = new BreadCrumb;
+    return $breadCrumb->createBreadCrumb();
+    
+});
+
