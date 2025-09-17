@@ -2,6 +2,7 @@
 use App\Classes\Template;
 use App\Classes\Parameters;
 
+
 $parameters = new Parameters;
 //dump($parameters->explodeParameters());
 
@@ -39,3 +40,4 @@ $method = $callMethod->method($controller);
  * Chamando o Controller atraves da classe controller e da classe method
  */
 $controller->$method();
+
