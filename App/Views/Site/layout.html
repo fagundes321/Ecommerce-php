@@ -10,76 +10,13 @@
                     <!-- include do menu -->
                     {% include 'includes/navbar/site_navbar.html' %}
                 </div>
-                <div class="corpo-carousel">
-                    <!-- include do carousel -->
-                    {% include 'includes/carousel/site_carousel_01.html' %}
+                
+               <div class="center_content">
+                    {% block site_content %}
+                    
+                    {% endblock %}
                 </div>
 
-                <!-- Banner 01 -->
-                <div class="banner_01 flex-container">
-                    <div class="banner_fundo">
-                        {% include 'includes/banner/site_banner_01.html' %}
-                    </div>
-                </div>
-
-                <!-- CARDS 01 -->
-                <div class="flex-container">
-
-                    <ul class="left_menu">
-
-                        {% include 'includes/cards/site_cards_01.html' %}
-                    </ul>
-                </div>
-
-                <!-- Banner 02 -->
-                <div class="banner_01 flex-container">
-                    <div class="banner_fundo">
-                        {% include 'includes/banner/site_banner_02.html' %}
-                    </div>
-                </div>
-
-                <!-- CARDS 02 -->
-                <div class="flex-container">
-                    <ul class="left_menu">
-                        {% include 'includes/cards/site_cards_02.html' %}
-                    </ul>
-                </div>
-
-
-                <!-- Banner 03 -->
-                <div class="banner_01 flex-container">
-                    <div class="banner_fundo">
-                        {% include 'includes/banner/site_banner_03.html' %}
-                    </div>
-                </div>
-
-                <!-- CARDS 03 -->
-                <div class="flex-container">
-                    <ul class="left_menu">
-                        {% include 'includes/cards/site_cards_03.html' %}
-                    </ul>
-                </div>
-
-                <div class="flex-container">
-                    <h1 class="">Novidades</h1>
-                    <div class=" recomendados "> <!-- Adicionei a classe swiper-container aqui -->
-                        {% include 'includes/slides/site_novidades.html' %}
-                    </div>
-                </div>
-
-              
-
-                <div class="flex-container">
-                    <h1 class="">Promoções</h1>
-                    <div class=" recomendados "> <!-- Adicionei a classe swiper-container aqui -->
-                        {% include 'includes/slides/site_promocoes.html' %}
-                    </div>
-                </div>
-
-
-                <div class="center_content">
-                    {% block content %}{% endblock %}
-                </div>
 
              
             </div>
@@ -91,6 +28,7 @@
 
     <!-- scripts -->
     {% include 'includes/config/scripts.html' %}
+
 </body>
 
 </html>

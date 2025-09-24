@@ -1,8 +1,63 @@
 {% extends 'layout.html' %}
 
-
 {% block site_content %}
+    <div class="corpo-carousel">
+        {% include 'includes/carousel/site_carousel_01.html' %}
+    </div>
 
-<h2>Pagina Inicial {{nome}}</h2>
+    <!-- Banner 01 -->
+    <div class="banner_01 flex-container">
+        <div class="banner_fundo">
+            {% include 'includes/banner/site_banner_01.html' %}
+        </div>
+    </div>
 
+    <!-- CARDS 01 -->
+    <div class="flex-container">
+        <ul class="left_menu">
+            {% include 'includes/cards/site_cards_01.html' %}
+        </ul>
+    </div>
+
+    <!-- Banner 02 -->
+    <div class="banner_01 flex-container">
+        <div class="banner_fundo">
+            {% include 'includes/banner/site_banner_02.html' %}
+        </div>
+    </div>
+
+    <!-- CARDS 02 -->
+    <div class="flex-container">
+        <ul class="left_menu">
+            {% include 'includes/cards/site_cards_02.html' %}
+        </ul>
+    </div>
+
+    <!-- Banner 03 -->
+    <div class="banner_01 flex-container">
+        <div class="banner_fundo">
+            {% include 'includes/banner/site_banner_03.html' %}
+        </div>
+    </div>
+
+    <!-- CARDS 03 -->
+    <div class="flex-container">
+        <ul class="left_menu">
+            {% include 'includes/cards/site_cards_03.html' %}
+        </ul>
+    </div>
+
+    <div class="flex-container">
+        <h1>Novidades</h1>
+        <div class="recomendados">
+            {% include 'includes/slides/site_novidades.html' %}
+        </div>
+    </div>
+
+    <div class="flex-container">
+        <h1>Promoções</h1>
+        <div class="recomendados">
+            {% include 'includes/slides/site_promocoes.html' %}
+        </div>
+    </div>
 {% endblock %}

@@ -1,0 +1,9 @@
+
+{% extends 'layout.html' %}
+
+{% block site_content %}
+<!-- <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>v -->
+<h2>Detalhes do produto {{ produto.produto_nome }}</h2>
+<p>{{ produto.descricao }}</p>
+<p>Preço: R$ {{ produto.produto_valor|number_format(2, ',', '.') }}</p>
+{% endblock %} 

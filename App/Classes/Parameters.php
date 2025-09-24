@@ -1,8 +1,9 @@
-<?php 
+<?php
 
 namespace App\Classes;
 
-class Parameters{
+class Parameters
+{
 
     private $uri;
     private $parameter;
@@ -13,9 +14,11 @@ class Parameters{
         $this->uri = $uri->getUri();
     }
 
-    public function explodeParameters(){
+    public function explodeParameters()
+    {
         $explodeUri = explode('/', $this->uri);
-        $this->parameter = array_filter($explodeUri);
+        $this->parameter = array_values(array_filter($explodeUri)); // renumera os índices
+
         return $this->parameter;
     }
 }

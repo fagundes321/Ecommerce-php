@@ -14,11 +14,24 @@ class DetalhesController extends BaseController{
         $this->produto = new ProdutoModel;
     }
 
-    public function index($slug){
+   public function index($slug)
+{
+    $produtoEncontrado = $this->produto->find('produto_slug', $slug);
 
-        // $produtoEncontrado = $this->produto->find('produto_slug', $params[0]);
-       dump($slug);
-
+    if (!$produtoEncontrado) {
+        echo "Produto não encontrado.";
+        return;
     }
+
+    $dados = [
+        'produto' => $produtoEncontrado,
+                 'titulo' => 'InovaTech | Loja Virtual',
+    ];
+
+    // Renderiza o template corretamente
+    echo $this->twig->render('site_detalhes.html', $dados);
+}
+
+
 
 }

@@ -9,6 +9,10 @@ $site_url = new \Twig\TwigFunction('site_url', function () {
     return 'http://' . $_SERVER['SERVER_NAME'] . ':8888';
 });
 
+// $titulo = new \Twig\TwigFunction('titulo', function () {
+//     return 'InovaTech | Loja Virtual';
+// });
+
 // Listar as categorias no Dropdown
 $categorias = new TwigFunction('categorias', function () {
     

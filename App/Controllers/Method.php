@@ -13,11 +13,12 @@ class Method
         $this->uri = new Uri;
     }
 
-    private function getMethod(): ?string
+    private function getMethod()
     {
         if (!$this->uri->emptyUri()) {
             $explodeUri = array_filter(explode('/', $this->uri->getUri()));
             return $explodeUri[2] ?? null;
+            // return (isset($explodeUri[2])) ? $explodeUri[2] : DEFAULT_METHOD ;
         }
 
         return null;
