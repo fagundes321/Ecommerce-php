@@ -10,18 +10,15 @@
                     <!-- include do menu -->
                     {% include 'includes/navbar/site_navbar.html' %}
                 </div>
-                
-               <div class="center_content">
-                    {% block site_content %}
-                    
-                    {% endblock %}
-                </div>
-
-
              
             </div>
 
                <!-- {{breadCrumb() | raw}} -->
+        </div>
+        <div class="center_content">
+            {% block site_content %}
+            
+            {% endblock %}
         </div>
         {% include 'includes/footer/site_footer.html' %}
     </div>
