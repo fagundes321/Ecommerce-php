@@ -2,7 +2,7 @@
     <div class="swiper-wrapper swiper-slide-container">
         {% for produto in promocao() %}
             {% if produto.produto_valor_promocao != null %}
-            <a href="/produto/{{ produto.id }}" class="produto-link swiper-slide">
+            <a href="/detalhes/{{ produto.produto_slug}}" class="produto-link swiper-slide">
                 <div class="slide-card">
                     <img
                         src="/public/assets/images/produtos/{{ produto.produto_slug }}.png"

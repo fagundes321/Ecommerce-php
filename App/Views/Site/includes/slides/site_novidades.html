@@ -1,7 +1,7 @@
 <div class="swiper">
     <div class="swiper-wrapper swiper-slide-container">
         {% for produto in novidade()|slice(0, 10) %}
-        <a href="/produto/{{ produto.id }}" class="produto-link swiper-slide">
+        <a href="/detalhes/{{ produto.produto_slug}}" class="produto-link swiper-slide">
             <div class="slide-card">
                 <img
                     src="/public/assets/images/produtos/{{ produto.produto_slug }}.png"

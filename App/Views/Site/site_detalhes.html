@@ -3,6 +3,15 @@
     <div class="main-detalhes pt-5 pb-5">
         <h2>Detalhes do produto {{ produto.produto_nome }}</h2>
         <p>{{ produto.descricao }}</p>
-        <p>Preço: R$ {{ produto.produto_valor|number_format(2, ',', '.') }}</p>
+        <!-- <p>Preço: R$ {{ produto.produto_valor|number_format(2, ',', '.') }}</p> -->
+
+          {% if produto.produto_valor_promocao == null %}
+                <h5 class="produto_preco">Preço: R$ {{ produto.produto_valor }}</h5>
+                {% else %}
+                <h5 class="produto_preco">
+                    R$ {{ produto.produto_valor_promocao }} à vista
+                </h5>
+                <h5 class="produto_real">Preço: R$ {{ produto.produto_valor }}</h5>
+                {% endif %}
     </div>
 {% endblock %}
