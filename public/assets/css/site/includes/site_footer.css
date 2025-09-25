@@ -1,12 +1,15 @@
     /* Footer clean e minimalista */
+/* Footer clean e minimalista */
 .footer {
   background-color: #f8f9fa; /* cor clara */
   color: #333;               /* texto escuro suave */
   padding: 20px 0;
   font-family: Arial, sans-serif;
   font-size: 14px;
-  margin-top: 100px;
+  margin-top: auto; /* empurra para o final */
+  width: 100%;
 }
+
 
 .footer-container {
   max-width: 1200px;

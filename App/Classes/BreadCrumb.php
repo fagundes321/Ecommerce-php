@@ -22,7 +22,7 @@ class BreadCrumb
             $searchTerm = isset($parts[1]) ? str_replace('+', ' ', $parts[1]) : '';
             return "<span style='color:#000'>Você está buscando:</span> 
                     <span style='font-style: italic;'>
-                        <a href='/' style='text-decoration:none; color:#000;'>Início</a> &gt; {$searchTerm}
+                        <a href='/' style=' color:#000;'>Início</a> &gt; {$searchTerm}
                     </span>";
         }
 
@@ -32,10 +32,10 @@ class BreadCrumb
         }
 
         // Para outras páginas internas
-        $segment = ucfirst(ltrim($this->uri, '/'));
+        $segment = ltrim($this->uri, '/');
         return "<span style='color:#000'>Navegação:</span> 
                 <span style='font-style: italic;'>
-                    <a href='/' style='text-decoration:none; color:#000;'>Início</a> &gt; {$segment}
+                    <a href='/' style=' color:#000;'>Início</a> &gt; {$segment}
                 </span>";
     }
 }

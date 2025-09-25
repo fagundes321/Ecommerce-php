@@ -1,17 +1,46 @@
 {% extends 'layout.html' %} 
 {% block site_content %}
-    <div class="main-detalhes pt-5 pb-5">
-        <h2>Detalhes do produto {{ produto.produto_nome }}</h2>
-        <p>{{ produto.descricao }}</p>
-        <!-- <p>Preço: R$ {{ produto.produto_valor|number_format(2, ',', '.') }}</p> -->
+<div class="main-detalhes container py-5 pt-8 pb-8">
+     {{breadCrumb() | raw}}
+    <div class="produto-container">
+        
+        <!-- Imagem -->
+        <div class="produto-imagem bg-white shadow-sm rounded p-4">
+            <img
+                src="/public/assets/images/produtos/{{ produto.produto_slug }}.png"
+                alt="{{ produto.produto_nome }}"
+                loading="eager"
+            />
+        </div>
 
-          {% if produto.produto_valor_promocao == null %}
-                <h5 class="produto_preco">Preço: R$ {{ produto.produto_valor }}</h5>
-                {% else %}
-                <h5 class="produto_preco">
+        <!-- Texto -->
+        <div class="produto-info">
+            
+            <h2 class="mb-3 fw-semibold">{{ produto.produto_nome }}</h2>
+            <h4 class=" ">{{ produto.produto_descricao }}</h3>
+            {% if produto.produto_valor_promocao == null %}
+                <h4 class="text-success fw-bold mb-4">
+                    R$ {{ produto.produto_valor }}
+                </h4>
+            {% else %}
+                <h4 class="text-success fw-bold mb-2">
                     R$ {{ produto.produto_valor_promocao }} à vista
-                </h5>
-                <h5 class="produto_real">Preço: R$ {{ produto.produto_valor }}</h5>
-                {% endif %}
+                </h4>
+                <h6 class="text-muted text-decoration-line-through mb-4">
+                    R$ {{ produto.produto_valor }}
+                </h6>
+            {% endif %}
+
+            <div class="d-flex gap-3">
+                <button class="btn btn-dark btn-lg flex-fill">
+                    Comprar agora
+                </button>
+                <button class="btn btn-outline-dark btn-lg flex-fill">
+                    🛒 Adicionar ao carrinho
+                </button>
+            </div>
+        </div>
     </div>
+</div>
+
 {% endblock %}
