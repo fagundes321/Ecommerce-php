@@ -1,0 +1,98 @@
+{% extends 'layout.html' %}
+
+{% block site_content %}
+<div class="container py-4">
+    <h2 class="mb-4">Resultados da Pesquisa ({{ produtos|length }})</h2>
+    
+    <div class="produtos-vertical">
+        {% for produto in produtos %}
+        <div class="produto-linha">
+            <img src="/public/assets/images/produtos/{{ produto.produto_slug }}.png" 
+                 alt="{{ produto.produto_nome }}"
+                 class="produto-img">
+            
+            <div class="produto-detalhes">
+                <h5>{{ produto.produto_nome }}</h5>
+                
+                {% if produto.produto_valor_promocao %}
+                <div class="precos">
+                    <span class="preco-promo">R$ {{ produto.produto_valor_promocao|number_format(2, ',', '.') }}</span>
+                    <span class="preco-original">R$ {{ produto.produto_valor|number_format(2, ',', '.') }}</span>
+                </div>
+                {% else %}
+                <span class="preco-normal">R$ {{ produto.produto_valor|number_format(2, ',', '.') }}</span>
+                {% endif %}
+            </div>
+            
+            <a href="/detalhes/{{ produto.produto_slug }}" class="btn-ver">Ver</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+.produtos-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.produto-linha {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.produto-img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.produto-detalhes {
+    flex: 1;
+}
+
+.produto-detalhes h5 {
+    margin: 0 0 0.5rem 0;
+    color: #333;
+}
+
+.preco-promo {
+    color: #0071e3;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.preco-original {
+    color: #999;
+    text-decoration: line-through;
+    margin-left: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.preco-normal {
+    color: #0071e3;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.btn-ver {
+    background: #0071e3;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.btn-ver:hover {
+    background: #0056b3;
+    color: white;
+    text-decoration: none;
+}
+</style>
+{% endblock %}

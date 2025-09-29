@@ -3,13 +3,27 @@
 namespace App\Controllers\Site;
 
 use App\Controllers\BaseController;
+use App\Repositories\Site\ProdutoRepository;
 
 class BuscaController extends BaseController{
 
+    private $produto;
+
+    public function __construct()
+    {
+        $this->produto = new ProdutoRepository;
+    }
+
     public function index(){
 
-        $produto = filter_input(INPUT_GET, 'b', FILTER_SANITIZE_SPECIAL_CHARS);
-        
+        $busca = filter_input(INPUT_GET, 'b', FILTER_SANITIZE_SPECIAL_CHARS);
+        $produtosEncontrados = $this->produto->buscarProduto($busca); 
+        $dados = [
+            'title' => 'Curso PHP ',
+            'produto' => $produtosEncontrados
+        ]; 
+
+         echo $this->twig->render('site_busca.html', $dados);
     }
 
 }
