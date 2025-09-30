@@ -2,12 +2,16 @@
 
 {% block site_content %}
 <div class="container py-4">
-    <h2 class="mt-5 mb-5">Resultados da Pesquisa ({{ produtos|length }})</h2>
+    <h2 class="mt-5 mb-5">Resultados da Pesquisa: {{ busca }}</h2>
+     <!-- {{breadCrumb() | raw}} -->
 <div class="">
-    <div class=" cards-container  ">
+    <div class=" busca-container   ">
+        {% if produto|length == 0 %}
+            Nenhum produto encontrado para a sua busca
+        {% endif %}
         {% for produto in produto %}
         <a href="/detalhes/{{ produto.produto_slug}}" class="produto-link ">
-            <div class="slide-card">
+            <div class="busca-produtos">
                 <img
                     src="/public/assets/images/produtos/{{ produto.produto_slug }}.png"
                     alt="{{ produto.produto_nome }}"

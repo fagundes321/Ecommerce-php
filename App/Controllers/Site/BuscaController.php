@@ -19,7 +19,7 @@ class BuscaController extends BaseController{
         $busca = filter_input(INPUT_GET, 'b', FILTER_SANITIZE_SPECIAL_CHARS);
         $produtosEncontrados = $this->produto->buscarProduto($busca); 
         $dados = [
-            'title' => 'Curso PHP ',
+            'busca' => $busca,
             'produto' => $produtosEncontrados
         ]; 
          echo $this->twig->render('site_busca.html', $dados);
