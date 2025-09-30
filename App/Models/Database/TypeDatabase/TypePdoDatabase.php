@@ -6,58 +6,94 @@ use App\Interfaces\InterfaceTypeDatabase;
 use App\Models\Database\ConnectDatabase\Connection;
 use App\Models\Database\ConnectDatabase\ConnectPdoDatabase;
 
+/**
+ * Classe TypePdoDatabase
+ * 
+ * Implementa InterfaceTypeDatabase usando PDO.
+ * 
+ * Funcionalidade:
+ * - Prepara, vincula valores e executa queries via PDO
+ * - Retorna resultados padronizados (fetch/fetchAll)
+ * - Permite abstração para repositórios sem depender diretamente do PDO
+ */
 class TypePdoDatabase implements InterfaceTypeDatabase
 {
-    private $pdo;        // Objeto da conexão PDO
-    private $objectPdo;  // Objeto PDOStatement (resultado do prepare)
+    /**
+     * @var \PDO Instância da conexão PDO
+     */
+    private $pdo;
 
+    /**
+     * @var \PDOStatement Objeto do statement preparado
+     */
+    private $objectPdo;
+
+    /**
+     * Construtor.
+     * - Inicializa a conexão PDO via Connection
+     */
     public function __construct()
     {
-        // Cria a conexão PDO usando a classe Connection
         $pdo = new Connection(new ConnectPdoDatabase);
         $this->pdo = $pdo->connectDatabase();
     }
 
+    /**
+     * Prepara a query SQL.
+     * 
+     * @param string $sql
+     */
     public function prepare($sql)
     {
-        // Prepara o comando SQL (retorna PDOStatement)
-        // Ex: SELECT * FROM tabela WHERE id = :id
         $this->objectPdo = $this->pdo->prepare($sql);
     }
 
+    /**
+     * Faz bind de valores aos parâmetros da query.
+     * 
+     * @param string $key
+     * @param mixed $value
+     */
     public function bindValue($key, $value)
     {
-        // Faz a associação de valores aos parâmetros do SQL
-        // Ex: :id → 10
         $this->objectPdo->bindValue($key, $value);
     }
 
+    /**
+     * Executa o comando SQL preparado.
+     */
     public function execute()
     {
-        // Executa o comando SQL preparado
-        // Pode ser SELECT, INSERT, UPDATE ou DELETE
         $this->objectPdo->execute();
     }
 
+    /**
+     * Retorna o número de linhas afetadas.
+     * 
+     * @return int
+     */
     public function rowCount()
     {
-        // Retorna quantas linhas foram afetadas
-        // Em SELECT → número de linhas retornadas
-        // Em INSERT/UPDATE/DELETE → número de linhas modificadas
         return $this->objectPdo->rowCount();
     }
 
+    /**
+     * Retorna uma linha do resultado da consulta.
+     * 
+     * @return mixed
+     */
     public function fetch()
     {
-        // Retorna apenas uma linha do resultado da consulta
-        // Normalmente usado quando espera-se apenas um registro
         return $this->objectPdo->fetch();
     }
 
+    /**
+     * Retorna todas as linhas do resultado da consulta.
+     * 
+     * @return array
+     */
     public function fetchAll()
     {
-        // Retorna todas as linhas do resultado da consulta em array
-        // Normalmente usado em listagens
         return $this->objectPdo->fetchAll();
     }
 }

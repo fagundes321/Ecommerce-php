@@ -5,33 +5,50 @@ namespace App\Controllers\Site;
 use App\Controllers\BaseController;
 use App\Models\Site\ProdutoModel;
 
-class DetalhesController extends BaseController{
-
+/**
+ * Controller responsável pela página de detalhes de um produto.
+ * 
+ * Fluxo:
+ * - Recebe o slug do produto pela URL
+ * - Busca o produto no banco através do Model
+ * - Caso não encontre, retorna mensagem simples
+ * - Caso encontre, envia os dados para a view Twig
+ */
+class DetalhesController extends BaseController
+{
     private $produto;
 
+    /**
+     * Construtor: inicializa o model de produtos.
+     */
     public function __construct()
     {
         $this->produto = new ProdutoModel;
     }
 
-   public function index($slug)
-{
-    $produtoEncontrado = $this->produto->find('produto_slug', $slug);
+    /**
+     * Exibe os detalhes de um produto.
+     * 
+     * @param string $slug Slug do produto vindo da rota
+     */
+    public function index($slug)
+    {
+        // Busca o produto pelo slug
+        $produtoEncontrado = $this->produto->find('produto_slug', $slug);
 
-    if (!$produtoEncontrado) {
-        echo "Produto não encontrado.";
-        return;
+        // Caso o produto não seja encontrado
+        if (!$produtoEncontrado) {
+            echo "Produto não encontrado.";
+            return;
+        }
+
+        // Monta os dados a serem enviados para a view
+        $dados = [
+            'produto' => $produtoEncontrado,
+            'titulo'  => 'InovaTech | Loja Virtual',
+        ];
+
+        // Renderiza o template Twig de detalhes
+        echo $this->twig->render('site_detalhes.html', $dados);
     }
-
-    $dados = [
-        'produto' => $produtoEncontrado,
-                 'titulo' => 'InovaTech | Loja Virtual',
-    ];
-
-    // Renderiza o template corretamente
-    echo $this->twig->render('site_detalhes.html', $dados);
-}
-
-
-
 }
