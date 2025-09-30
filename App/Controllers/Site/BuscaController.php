@@ -22,7 +22,6 @@ class BuscaController extends BaseController{
             'title' => 'Curso PHP ',
             'produto' => $produtosEncontrados
         ]; 
-
          echo $this->twig->render('site_busca.html', $dados);
     }
 

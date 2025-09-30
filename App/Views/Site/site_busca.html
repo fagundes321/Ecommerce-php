@@ -2,32 +2,32 @@
 
 {% block site_content %}
 <div class="container py-4">
-    <h2 class="mb-4">Resultados da Pesquisa ({{ produtos|length }})</h2>
-    
-    <div class="produtos-vertical">
-        {% for produto in produtos %}
-        <div class="produto-linha">
-            <img src="/public/assets/images/produtos/{{ produto.produto_slug }}.png" 
-                 alt="{{ produto.produto_nome }}"
-                 class="produto-img">
-            
-            <div class="produto-detalhes">
-                <h5>{{ produto.produto_nome }}</h5>
-                
-                {% if produto.produto_valor_promocao %}
-                <div class="precos">
-                    <span class="preco-promo">R$ {{ produto.produto_valor_promocao|number_format(2, ',', '.') }}</span>
-                    <span class="preco-original">R$ {{ produto.produto_valor|number_format(2, ',', '.') }}</span>
-                </div>
+    <h2 class="mt-5 mb-5">Resultados da Pesquisa ({{ produtos|length }})</h2>
+<div class="">
+    <div class=" cards-container  ">
+        {% for produto in produto %}
+        <a href="/detalhes/{{ produto.produto_slug}}" class="produto-link ">
+            <div class="slide-card">
+                <img
+                    src="/public/assets/images/produtos/{{ produto.produto_slug }}.png"
+                    alt="{{ produto.produto_nome }}"
+                    loading="eager"
+                />
+
+                <h3 class="titulo-produto">{{ produto.produto_nome }}</h3>
+                {% if produto.produto_valor_promocao == null %}
+                <h5 class="produto_preco">R$ {{ produto.produto_valor }}</h5>
                 {% else %}
-                <span class="preco-normal">R$ {{ produto.produto_valor|number_format(2, ',', '.') }}</span>
+                <h5 class="produto_preco">
+                    R$ {{ produto.produto_valor_promocao }} à vista
+                </h5>
+                <h5 class="produto_real">R$ {{ produto.produto_valor }}</h5>
                 {% endif %}
             </div>
-            
-            <a href="/detalhes/{{ produto.produto_slug }}" class="btn-ver">Ver</a>
-        </div>
+        </a>
         {% endfor %}
     </div>
+    
 </div>
 
 <style>

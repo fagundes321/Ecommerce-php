@@ -1,7 +1,7 @@
 <?php 
 use App\Classes\Template;
 use App\Classes\Parameters;
-
+use Twig\Extension\DebugExtension;
 
 $parameters = new Parameters;
 //dump($parameters->explodeParameters());
@@ -18,7 +18,7 @@ $twig->addFunction($categorias);
 $twig->addFunction($novidade);
 $twig->addFunction($promocao);
 $twig->addFunction($breadCrumb);
-
+$twig->addExtension(new DebugExtension());
 
 /**
  * chamando o Controller digitado na url
