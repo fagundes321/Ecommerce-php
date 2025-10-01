@@ -11,10 +11,10 @@ $(document).ready(function () {
         console.log(idProduto);
 
         $.ajax({
-            url:'/carrinho/add/'+produto,
+            url:'/carrinho/add/'+idProduto,
             type:'POST',
             success:function(retorno){
-                console.log(retorno)
+                // console.log(retorno)
             }
         })
     });
