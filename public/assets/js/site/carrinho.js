@@ -1,13 +1,21 @@
 $(document).ready(function () {
-
-    var main_content = $("#main_content");
-    var center_content = main_content.find(".center_content");
-    var shopping_cart = center_content.find("shopping_cart");
-    var produts_cart = center_content.find("#products_cart");
-    var price_cart = shopping_cart.find("price");
+    var center_content = $(".center_content");
+    var shopping_cart = center_content.find(".main-detalhes");
+    var produts_cart = $("#products_cart"); // se existir em outro lugar
+    var price_cart = shopping_cart.find(".price"); // precisa ter classe/ID "price" no HTML
     var btn_add_carrinho = center_content.find(".add-carrinho");
 
-    btn_add_carrinho.on('click', function(){
-        console.log('add no carrinho');
+    btn_add_carrinho.on('click', function () {
+
+        var idProduto = $(this).attr('data-id');
+        console.log(idProduto);
+
+        $.ajax({
+            url:'/carrinho/add/'+produto,
+            type:'POST',
+            success:function(retorno){
+                console.log(retorno)
+            }
+        })
     });
-})
+});

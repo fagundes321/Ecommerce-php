@@ -3,18 +3,18 @@ let lastScrollTop = 0;
 const navbar = document.querySelector(".navbar-premium");
 
 // efeito placeholder
-const searchInput = document.getElementById("searchInput");
-const originalPlaceholder = searchInput.placeholder;
+// const searchInput = document.getElementById("searchInput");
+// const originalPlaceholder = searchInput.placeholder;
 
-searchInput.addEventListener("focus", () => {
-    searchInput.placeholder = "";
-});
+// searchInput.addEventListener("focus", () => {
+//     searchInput.placeholder = "";
+// });
 
-searchInput.addEventListener("blur", () => {
-    if (!searchInput.value.trim()) {
-        searchInput.placeholder = originalPlaceholder;
-    }
-});
+// searchInput.addEventListener("blur", () => {
+//     if (!searchInput.value.trim()) {
+//         searchInput.placeholder = originalPlaceholder;
+//     }
+// });
 
 // unificação do scroll
 window.addEventListener("scroll", () => {
