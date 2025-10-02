@@ -24,14 +24,18 @@ class ProdutosCarrinhosRepository
 
         foreach ($this->carrinho->produtosCarrinho() as $id => $qtd) {
             $produtoCarrinho =  $this->produtoModel->find('id', $id);
-            $valorProduto =  ($produtoCarrinho->produto_promocao == 1) ? $produtoCarrinho->produto_valor_promocao : $produtoCarrinho->produto_valor;
-        
+            $valorProduto =  ($produtoCarrinho->produto_promocao == 1)
+                ? $produtoCarrinho->produto_valor_promocao
+                : $produtoCarrinho->produto_valor;
+
             $produtos[] = [
                 'produtos' => $produtoCarrinho,
-                'subtotal' => $valorProduto*$qtd,
-                'qtd' => $valorProduto
+                'subtotal' => $valorProduto * $qtd,
+                'qtd' => $qtd,
+                'valor' => $valorProduto
             ];
         }
+        return $produtos;
     }
 
     public function totalProdutosCarrinho() {}
