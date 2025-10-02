@@ -4,21 +4,30 @@ namespace App\Controllers\Site;
 
 use App\Controllers\BaseController;
 use App\Classes\Carrinho;
+use App\Repositories\Site\ProdutosCarrinhoRepository;
 class CarrinhoController extends BaseController{
     
     private $carrinho;
+    private $produtosCarrinhoRepository;
 
     public function __construct()
     { 
 
         $this->carrinho = new Carrinho();
-        
+        $this->produtosCarrinhoRepository = new ProdutosCarrinhoRepository();
     }
 
     public function add($params){
         
         $this->carrinho->add($params[0]);
 
+    }
+
+    public function get() {
+        echo json_encode([
+            // 'numeroProdutosCarrinho' => count($this->carrinho->produtoCarrinho()),
+            'valorProdutosCarrinho'  => $this->produtosCarrinhoRepository->totalProdutosCarrinho()
+        ]);
     }
     
 }
