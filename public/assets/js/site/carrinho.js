@@ -8,7 +8,7 @@ $(document).ready(function () {
     function totalProdutosCarrinho(){
         return $.ajax({
             url:'/carrinho/get',
-            // dataType: 'json',
+            dataType: 'json',
             success: function (retorno){
                 console.log(retorno)
                 products_cart.html(retorno.numeroProdutosCarrinho);
