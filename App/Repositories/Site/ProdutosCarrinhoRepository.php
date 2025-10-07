@@ -17,37 +17,54 @@ class ProdutosCarrinhoRepository
         $this->produtoModel = new ProdutoModel;
     }
 
-    public function produtosNoCarrinho()
-    {
-        $produtos = [];
-        $subtotal = 0;
+ public function produtosNoCarrinho()
+{
+    $produtos = [];
+    $subtotal = 0;
 
-        foreach ($this->carrinho->produtosCarrinho() as $id => $qtd) {
-            $produtoCarrinho =  $this->produtoModel->find('id', $id);
-            $valorProduto =  ($produtoCarrinho->produto_promocao == 1)
-                ? $produtoCarrinho->produto_valor_promocao
-                : $produtoCarrinho->produto_valor;
+    foreach ($this->carrinho->produtosCarrinho() as $id => $qtd) {
+        $produtoCarrinho = $this->produtoModel->find('id', $id);
 
-            $produtos[] = [
-                'produtos' => $produtoCarrinho,
-                'subtotal' => $valorProduto * $qtd,
-                'qtd' => $qtd,
-                'valor' => $valorProduto
-            ];
+        // 🔍 Verifica se o produto existe
+        if (!$produtoCarrinho) {
+            continue; // pula esse item
         }
-        return $produtos;
+
+        $valorProduto = ($produtoCarrinho->produto_promocao == 1)
+            ? $produtoCarrinho->produto_valor_promocao
+            : $produtoCarrinho->produto_valor;
+
+        $produtos[] = [
+            'produtos' => $produtoCarrinho,
+            'subtotal' => $valorProduto * $qtd,
+            'qtd' => $qtd,
+            'valor' => $valorProduto
+        ];
     }
 
-    public function totalProdutosCarrinho()
-    {
-        $total = 0;
-        foreach ($this->carrinho->produtosCarrinho() as $id => $qtd) {
-            $produtoCarrinho =  $this->produtoModel->find('id', $id);
-            $valorProduto =  ($produtoCarrinho->produto_promocao == 1)
-                ? $produtoCarrinho->produto_valor_promocao
-                : $produtoCarrinho->produto_valor;
-            $total += $valorProduto * $qtd;
+    return $produtos;
+}
+
+public function totalProdutosCarrinho()
+{
+    $total = 0;
+
+    foreach ($this->carrinho->produtosCarrinho() as $id => $qtd) {
+        $produtoCarrinho = $this->produtoModel->find('id', $id);
+
+        // 🔍 Verifica se o produto existe
+        if (!$produtoCarrinho) {
+            continue;
         }
-        return $total;
+
+        $valorProduto = ($produtoCarrinho->produto_promocao == 1)
+            ? $produtoCarrinho->produto_valor_promocao
+            : $produtoCarrinho->produto_valor;
+
+        $total += $valorProduto * $qtd;
     }
+
+    return $total;
+}
+
 }

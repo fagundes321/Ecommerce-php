@@ -91,5 +91,6 @@ class Carrinho
        if($this->statusCarrinho->carrinhoExiste()){
         return $this->statusCarrinho->carrinho();
        }
+       return [];
     }
 }

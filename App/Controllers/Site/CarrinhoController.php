@@ -25,7 +25,8 @@ class CarrinhoController extends BaseController{
 
     public function get() {
         echo json_encode([
-            // 'numeroProdutosCarrinho' => count($this->carrinho->produtoCarrinho()),
+            'numeroProdutosCarrinho' => count($this->carrinho->produtosCarrinho()),
+
             'valorProdutosCarrinho'  => $this->produtosCarrinhoRepository->totalProdutosCarrinho()
         ]);
     }
