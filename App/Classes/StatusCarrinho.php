@@ -14,7 +14,7 @@ class StatusCarrinho
      */
     public function carrinhoExiste()
     {
-        return isset($_SESSION['carrinho']);
+        return (isset($_SESSION['carrinho'])) ? true : false;
     }
 
     /**
@@ -38,7 +38,10 @@ class StatusCarrinho
      */
     public function produtoEstaNoCarrinho($id)
     {
-        return isset($_SESSION['carrinho'][$id]);
+        if (isset($_SESSION['carrinho'][$id])) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -51,4 +54,3 @@ class StatusCarrinho
         return $_SESSION['carrinho'];
     }
 }
-

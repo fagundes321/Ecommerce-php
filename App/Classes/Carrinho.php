@@ -49,6 +49,7 @@ class Carrinho
      */
     public function produtoCarrinho($id)
     {
+        
         return $_SESSION['carrinho'][$id];
     }
 
