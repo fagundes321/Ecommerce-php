@@ -33,6 +33,10 @@ class DetalhesController extends BaseController
      */
     public function index($slug)
     {
+
+        //    $carrinho = new \App\Classes\Carrinho();
+        // dump($carrinho->add(1));
+
         // Busca o produto pelo slug
         $produtoEncontrado = $this->produto->find('produto_slug', $slug);
 

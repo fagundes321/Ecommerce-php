@@ -20,6 +20,9 @@ class HomeController extends BaseController
      */
     public function index()
     {
+
+     
+
         // Instancia o repositório de produtos
         $produtoRepository = new ProdutoRepository;
 

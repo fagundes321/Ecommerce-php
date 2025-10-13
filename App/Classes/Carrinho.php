@@ -37,10 +37,10 @@ class Carrinho
     {
         if ($this->statusCarrinho->produtoEstaNoCarrinho($id)) {
             // Produto já existe → adiciona 1 unidade
-            $_SESSION['carrinho'][$id] += 1;
+            $_SESSION['carrinho'][$id]+=1;
         } else {
             // Produto não existe → adiciona 1 unidade
-            $_SESSION['carrinho'][$id] = 1;
+            $_SESSION['carrinho'][$id]=1;
         }
     }
 
