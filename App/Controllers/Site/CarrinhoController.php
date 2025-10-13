@@ -18,8 +18,10 @@ class CarrinhoController extends BaseController{
     }
 
     public function add($params){
-        
-        $this->carrinho->add($params[0]);
+        echo '<pre>'; 
+        var_dump($params); 
+        echo '</pre>'; exit;
+        // $this->carrinho->add($params[0]);
 
     }
 

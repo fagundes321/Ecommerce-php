@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Controllers;
 
@@ -17,10 +17,10 @@ class Controller
 {
     // Namespace base dos controllers
     const NAMESPACE_CONTROLLER = '\\App\\Controllers\\';
-    
+
     // Diretórios onde os controllers podem estar
     const FOLDERS_CONTROLLER = ['Site', 'Admin'];
-    
+
     // Controller padrão de erro caso não encontre a classe
     const ERROR_CONTROLLER = '\\App\\Controllers\\Erro\\ErroController';
 
