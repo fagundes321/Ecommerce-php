@@ -56,7 +56,7 @@ class Controller
         }
 
         // Caso a URI esteja vazia, retorna o controller padrão definido em DEFAULT_CONTROLLER
-        return ucfirst(DEFAULT_CONTROLLER) . 'Controller';
+        return ucfirst(DEFAULT_CONTROLLER).'Controller';
     }
 
     /**

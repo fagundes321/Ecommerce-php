@@ -47,11 +47,12 @@ $method = $callMethod->method($controller);
 // --------------------------------------------
 $uriParts = array_values(array_filter(explode('/', $_SERVER['REQUEST_URI'])));
 $params = array_slice($uriParts, 1); // pega tudo depois do controller
+$params1 = array_slice($uriParts, 2);
 
 // --------------------------------------------
 // Chama o método do controller passando os parâmetros capturados
 // --------------------------------------------
-call_user_func_array([$controller, $method], $params);
+call_user_func_array([$controller, $method], $params1);
 
 // --------------------------------------------
 // Alternativa direta (não usada atualmente)
