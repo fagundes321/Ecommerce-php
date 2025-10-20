@@ -18,10 +18,11 @@ class CarrinhoController extends BaseController{
     }
 
     public function add($idProduto){
-        // $this->carrinho->add($params1[0]);
-        echo '<pre>'; 
-        var_dump($idProduto); 
-        echo '</pre>'; exit;
+        $this->carrinho->add($idProduto);
+        dump($this->carrinho->add($idProduto));
+        // echo '<pre>'; 
+        // var_dump($idProduto); 
+        // echo '</pre>'; exit;
 
     }
 

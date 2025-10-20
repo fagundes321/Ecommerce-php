@@ -34,13 +34,32 @@ class Parameters
      *
      * @return array Lista de parâmetros renumerados
      */
-    public function explodeParameters(): array
+    private function explodeParameters()
     {
         $explodeUri = explode('/', $this->uri);
-
         // Remove valores vazios e renumera os índices
-        $this->parameter = array_values(array_filter($explodeUri));
+        $this->parameter = array_filter($explodeUri);
+            //  dump($this->parameter);
+        // return $this->parameter;
+    }
 
-        return $this->parameter;
+    public function getParameterMethod($object, $method)
+    {
+        if (method_exists($object, $method)) {
+
+            $this->explodeParameters();
+
+            
+            if ($method == 'index') {
+
+                unset($this->parameter[1]);
+                
+                return isset($this->parameter[2]) ? $this->parameter : null;
+            }
+
+            unset($this->parameter[1],$this->parameter[2]);
+
+            return isset($this->parameter[3]) ? $this->parameter : null;
+        }
     }
 }
