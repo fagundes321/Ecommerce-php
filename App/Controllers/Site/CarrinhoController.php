@@ -34,4 +34,7 @@ class CarrinhoController extends BaseController{
         ]);
     }
     
+     public function index(){
+        echo $this->twig->render('site_carrinho.html');
+    }
 }

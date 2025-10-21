@@ -55,4 +55,6 @@ class DetalhesController extends BaseController
         // Renderiza o template Twig de detalhes
         echo $this->twig->render('site_detalhes.html', $dados);
     }
+
+   
 }
