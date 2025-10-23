@@ -4,6 +4,8 @@ use App\Classes\Template;
 use App\Classes\Parameters;
 use Twig\Extension\DebugExtension;
 
+
+
 // var_dump('bootstrap: ' . $_SESSION['carrinho']);
 // var_dump($_SESSION['carrinho']);
 

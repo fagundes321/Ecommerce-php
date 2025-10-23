@@ -15,6 +15,7 @@ use App\Repositories\Site\ProdutoRepository;
  */
 class HomeController extends BaseController
 {
+    // public $carrinho;
     /**
      * Exibe a página inicial da loja.
      */
@@ -29,13 +30,14 @@ class HomeController extends BaseController
         // Exemplo de testes com o carrinho (comentados)
         $carrinho = new \App\Classes\Carrinho;
         // $carrinho->produtoCarrinho(3);
-        unset($_SESSION['carrinho']);
+        // unset($_SESSION['carrinho']);
         // dump($carrinho->statusCarrinho->carrinho());
 
         // Dados que serão enviados para a view
         $dados = [
             'titulo' => 'InovaTech | Loja Virtual',
-            'nome'   => 'Victor'
+            'nome'   => 'Victor',
+            // 'totalCarrinho' => $this->carrinho->produtosCarrinho()
         ];
 
         // Forma 1: simples e direta (recomendada)
