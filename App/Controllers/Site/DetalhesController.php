@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Controllers\Site;
 
@@ -34,6 +34,13 @@ class DetalhesController extends BaseController
     public function index($slug)
     {
 
+        $carrinho = new \App\Classes\Carrinho;
+        // $carrinho->produtoCarrinho(3);
+        // unset($_SESSION['carrinho']);
+        // var_dump($carrinho->statusCarrinho->carrinho());
+        // var_dump($_SESSION);
+        // exit;
+
         //    $carrinho = new \App\Classes\Carrinho();
         // dump($carrinho->add(1));
 
@@ -55,6 +62,4 @@ class DetalhesController extends BaseController
         // Renderiza o template Twig de detalhes
         echo $this->twig->render('site_detalhes.html', $dados);
     }
-
-   
 }

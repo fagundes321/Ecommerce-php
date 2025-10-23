@@ -1,40 +1,46 @@
-<?php 
+<?php
 
 namespace App\Controllers\Site;
 
 use App\Controllers\BaseController;
 use App\Classes\Carrinho;
 use App\Repositories\Site\ProdutosCarrinhoRepository;
-class CarrinhoController extends BaseController{
-    
+
+class CarrinhoController extends BaseController
+{
+
     private $carrinho;
     private $produtosCarrinhoRepository;
 
     public function __construct()
-    { 
+    {
 
         $this->carrinho = new Carrinho();
         $this->produtosCarrinhoRepository = new ProdutosCarrinhoRepository();
     }
 
-    public function add($idProduto){
+    public function add($idProduto)
+    {
         $this->carrinho->add($idProduto);
-        dump($this->carrinho->add($idProduto));
+        // dump($this->carrinho->add($idProduto));
         // echo '<pre>'; 
         // var_dump($idProduto); 
         // echo '</pre>'; exit;
 
     }
 
-    public function get() {
+    public function get()
+    {
         echo json_encode([
-            'numeroProdutosCarrinho' => count($this->carrinho->produtosCarrinho()),
+            'numeroProdutosCarrinho' => array_sum($this->carrinho->produtosCarrinho()),
 
             'valorProdutosCarrinho'  => $this->produtosCarrinhoRepository->totalProdutosCarrinho()
         ]);
     }
-    
-     public function index(){
+
+    public function index()
+    {
+        
         echo $this->twig->render('site_carrinho.html');
     }
 }

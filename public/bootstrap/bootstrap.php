@@ -1,8 +1,11 @@
-<?php 
+<?php
 
 use App\Classes\Template;
 use App\Classes\Parameters;
 use Twig\Extension\DebugExtension;
+
+// var_dump('bootstrap: ' . $_SESSION['carrinho']);
+// var_dump($_SESSION['carrinho']);
 
 // Instancia os parâmetros da URL
 $parameters = new Parameters;

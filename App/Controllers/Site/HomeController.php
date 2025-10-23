@@ -21,14 +21,15 @@ class HomeController extends BaseController
     public function index()
     {
 
-     
+
 
         // Instancia o repositório de produtos
         $produtoRepository = new ProdutoRepository;
 
         // Exemplo de testes com o carrinho (comentados)
-        // $carrinho = new \App\Classes\Carrinho;
-        // dump($carrinho->produtoCarrinho(1));
+        $carrinho = new \App\Classes\Carrinho;
+        // $carrinho->produtoCarrinho(3);
+        unset($_SESSION['carrinho']);
         // dump($carrinho->statusCarrinho->carrinho());
 
         // Dados que serão enviados para a view

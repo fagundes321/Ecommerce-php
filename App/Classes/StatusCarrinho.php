@@ -51,6 +51,7 @@ class StatusCarrinho
      */
     public function carrinho()
     {
+        // var_dump($_SESSION['carrinho']);
         return $_SESSION['carrinho'];
     }
 }

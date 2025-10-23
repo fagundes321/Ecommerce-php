@@ -20,7 +20,8 @@ class Carrinho
      * Objeto da classe StatusCarrinho
      * Permite verificar se o carrinho existe e se um produto já está nele
      */
-    private $statusCarrinho;
+    public $statusCarrinho;
+
 
     public function __construct()
     {
@@ -33,14 +34,22 @@ class Carrinho
      * Adiciona um produto ao carrinho
      * Se o produto já existir, incrementa a quantidade
      */
+
+    // Aqui mexe com a quantidades dos produtos no carrinho, não no valor 
     public function add($id)
     {
+
         if ($this->statusCarrinho->produtoEstaNoCarrinho($id)) {
             // Produto já existe → adiciona 1 unidade
-            $_SESSION['carrinho'][$id]+=1;
+            // var_dump('aqui');
+            // exit;
+            // var_dump($_SESSION['carrinho'][$id]);
+            // exit;
+            $_SESSION['carrinho'][$id] += 1;
         } else {
+
             // Produto não existe → adiciona 1 unidade
-            $_SESSION['carrinho'][$id]=1;
+            $_SESSION['carrinho'][$id] = 1;
         }
     }
 
@@ -49,7 +58,7 @@ class Carrinho
      */
     public function produtoCarrinho($id)
     {
-        
+
         return $_SESSION['carrinho'][$id];
     }
 
@@ -57,10 +66,10 @@ class Carrinho
      * Atualiza a quantidade de um produto no carrinho
      * Só atualiza se o produto já estiver presente
      */
-    public function update($id, $qtd)
+    public function update($id)
     {
         if ($this->statusCarrinho->produtoEstaNoCarrinho($id)) {
-            $_SESSION['carrinho'][$id] = $qtd;
+            $_SESSION['carrinho'][$id];
         }
     }
 
@@ -69,7 +78,7 @@ class Carrinho
      */
     public function remove($id)
     {
-        if($this->statusCarrinho->produtoEstaNoCarrinho($id)){
+        if ($this->statusCarrinho->produtoEstaNoCarrinho($id)) {
             unset($_SESSION['carrinho'][$id]);
         }
     }
@@ -79,7 +88,7 @@ class Carrinho
      */
     public function clear()
     {
-        if($this->statusCarrinho->carrinhoExiste()){
+        if ($this->statusCarrinho->carrinhoExiste()) {
             unset($_SESSION['carrinho']);
         }
     }
@@ -89,9 +98,9 @@ class Carrinho
      */
     public function produtosCarrinho()
     {
-       if($this->statusCarrinho->carrinhoExiste()){
-        return $this->statusCarrinho->carrinho();
-       }
-       return [];
+        if ($this->statusCarrinho->carrinhoExiste()) {
+            return $this->statusCarrinho->carrinho();
+        }
+        return [""];
     }
 }

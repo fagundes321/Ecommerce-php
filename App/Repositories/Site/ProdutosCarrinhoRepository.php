@@ -60,10 +60,9 @@ public function totalProdutosCarrinho()
         $valorProduto = ($produtoCarrinho->produto_promocao == 1)
             ? $produtoCarrinho->produto_valor_promocao
             : $produtoCarrinho->produto_valor;
-
-        $total += $valorProduto * $qtd;
-    }
-
+            $total += $valorProduto * $qtd;
+        }
+        
     return $total;
 }
 
