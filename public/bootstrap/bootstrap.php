@@ -22,6 +22,8 @@ $twig->addFunction($categorias);
 $twig->addFunction($novidade);
 $twig->addFunction($promocao);
 $twig->addFunction($breadCrumb);
+$twig->addFunction($valorProdutosCarrinho);
+$twig->addFunction($numeroProdutosCarrinho);
 
 // Habilita o DebugExtension
 $twig->addExtension(new DebugExtension());

@@ -1,9 +1,11 @@
 <?php
 
 use Twig\TwigFunction;
-use App\Repositories\Site\CategoriaRepository;
 use App\Repositories\Site\ProdutoRepository;
 use App\Classes\BreadCrumb;
+use App\Repositories\Site\CategoriaRepository;
+use App\Repositories\Site\ProdutosCarrinhoRepository;
+use App\Classes\Carrinho;
 
 /**
  * Função Twig: site_url
@@ -53,3 +55,25 @@ $breadCrumb = new TwigFunction('breadCrumb', function () {
     $breadCrumb = new BreadCrumb;
     return $breadCrumb->createBreadCrumb();
 });
+
+/**
+ * Função : Total de produtos no carrinho
+ * Retorna o Total de produtos no carrinho.
+ * 
+ */
+$valorProdutosCarrinho = new TwigFunction('valorProdutosCarrinho', function () {
+    $produtosCarrinhosRepository = new ProdutosCarrinhoRepository();
+    return $produtosCarrinhosRepository->totalProdutosCarrinho();
+});
+
+/**
+ * Função : Numero de produtos no carrinho
+ * Retorna o Numero de produtos no carrinho.
+ * 
+ */
+$numeroProdutosCarrinho = new TwigFunction('numeroProdutosCarrinho', function () {
+    $produtosCarrinho =  new Carrinho;
+    return $produtosCarrinho->produtosCarrinho();
+});
+
+
