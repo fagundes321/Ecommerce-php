@@ -25,6 +25,9 @@ $twig->addFunction($breadCrumb);
 $twig->addFunction($valorProdutosCarrinho);
 $twig->addFunction($numeroProdutosCarrinho);
 
+// Adiciona filtros customizados do Twig
+$twig->addFilter(new \Twig\TwigFilter('array_sum', 'array_sum'));
+
 // Habilita o DebugExtension
 $twig->addExtension(new DebugExtension());
 

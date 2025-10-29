@@ -33,7 +33,7 @@ class CarrinhoController extends BaseController
     {
         echo json_encode([
             'numeroProdutosCarrinho' => array_sum($this->carrinho->produtosCarrinho()),
-
+            // 'numeroProdutosCarrinho' => count($this->carrinho->produtosCarrinho()),
             'valorProdutosCarrinho'  => $this->produtosCarrinhoRepository->totalProdutosCarrinho()
         ]);
     }
