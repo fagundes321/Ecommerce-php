@@ -1,7 +1,92 @@
 {% extends 'layout.html' %} 
 {% block site_content %}
-    <div class="main-detalhes container py-5 pt-8 pb-8">
-     {{breadCrumb() | raw}}
-    <h1>AAAAAAAAAAAA</h1>
+<style>
+    /* 💅 Estilo personalizado para o botão Alterar */
+    .btn-alterar-quantidade {
+        background: linear-gradient(135deg, #2185d0, #1678c2);
+        color: #fff !important;
+        font-weight: 600;
+        border: none;
+        border-radius: 6px;
+        padding: 6px 14px !important;
+        transition: all 0.2s ease;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-alterar-quantidade:hover {
+        background: linear-gradient(135deg, #1a76d2, #125ea6);
+        transform: scale(1.05);
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    .btn-alterar-quantidade:active {
+        transform: scale(0.98);
+        box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+</style>
+
+<div class="main-detalhes container py-5 pt-8 pb-8">
+    {{ breadCrumb() | raw }}
+
+    <table class="ui celled table">
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Valor</th>
+                <th>Subtotal</th>
+                <th>Remover</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for produto in produtos %}
+                <tr>
+                    <td>{{ produto.produtos.produto_nome }}</td>
+
+                    <td>
+                        <div class="ui form">
+                            <div class="inline field" style="display: flex; align-items: center; gap: 8px;">
+                                <input 
+                                    type="number" 
+                                    value="{{ produto.qtd }}" 
+                                    min="1" 
+                                    style="width: 60px; height: 30px; text-align: center;"
+                                    class="input-quantidade"
+                                >
+                                <button 
+                                    class="mini ui button btn-alterar-quantidade" 
+                                    data-id="{{ produto.produtos.id }}"
+                                    type="button"
+                                >
+                                    Alterar
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td>R$ {{ produto.produtos.produto_valor | number_format(2, ',', '.') }}</td>
+                    <td>R$ {{ (produto.produtos.produto_valor * produto.qtd) | number_format(2, ',', '.') }}</td>
+
+                    <td>
+                        <button 
+                            class="mini ui red button btn-remover-item" 
+                            data-id="{{ produto.produtos.id }}"
+                            type="button"
+                        >
+                            Remover
+                        </button>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5" class="center aligned">
+                        <div class="ui message">
+                            Nenhum produto no carrinho 🛒
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 {% endblock %}

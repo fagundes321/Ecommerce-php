@@ -40,7 +40,12 @@ class CarrinhoController extends BaseController
 
     public function index()
     {
-        
-        echo $this->twig->render('site_carrinho.html');
+        $produtos = $this->produtosCarrinhoRepository->produtosNoCarrinho();
+
+        $dados = [
+            'produtos' => $produtos
+        ];
+
+        echo $this->twig->render('site_carrinho.html', $dados);
     }
 }
