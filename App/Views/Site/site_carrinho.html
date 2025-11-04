@@ -64,8 +64,8 @@
                         </div>
                     </td>
 
-                    <td>R$ {{ produto.produtos.produto_valor | number_format(2, ',', '.') }}</td>
-                    <td>R$ {{ (produto.produtos.produto_valor * produto.qtd) | number_format(2, ',', '.') }}</td>
+                    <td>R$ {{ produto.valor | number_format(2, ',', '.') }}</td>
+                    <td>R$ {{ (produto.subtotal) | number_format(2, ',', '.') }}</td>
 
                     <td>
                         <button 
@@ -87,6 +87,13 @@
                 </tr>
             {% endfor %}
         </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3"> 
+                    Total da compra: <span class="price"> R$ {{ valorProdutosCarrinho() | number_format(2, ',', '.')}}</span>
+                </td>
+            </tr>
+        </tfoot>
     </table>
 </div>
 {% endblock %}

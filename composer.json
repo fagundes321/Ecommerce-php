@@ -1,7 +1,8 @@
 {
     "require": {
         "symfony/var-dumper": "^7.3",
-        "twig/twig": "^3.21"
+        "twig/twig": "^3.21",
+        "cagartner/correios-consulta": "^0.3.0"
     },
     "autoload": {
         "psr-4": {
