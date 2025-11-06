@@ -12,16 +12,16 @@ class CorreiosConsulta
     const RASTREIO_URL = 'https://www2.correios.com.br/sistemas/rastreamento/resultado_semcontent.cfm';
 
     private static $tipos
-        = [
-            'sedex'          => '04014',
-            'sedex_a_cobrar' => '40045',
-            'sedex_10'       => '40215',
-            'sedex_hoje'     => '40290',
-            'pac'            => '04510',
-            'pac_contrato'   => '04669',
-            'sedex_contrato' => '04162',
-            'esedex'         => '81019',
-        ];
+    = [
+        'sedex'          => '04014',
+        'sedex_a_cobrar' => '40045',
+        'sedex_10'       => '40215',
+        'sedex_hoje'     => '40290',
+        'pac'            => '04510',
+        'pac_contrato'   => '04669',
+        'sedex_contrato' => '04162',
+        'esedex'         => '81019',
+    ];
 
     public static function getTipos()
     {
@@ -131,7 +131,6 @@ class CorreiosConsulta
                     'entrega_sabado'     => $rate->EntregaSabado === 'S',
                     'erro'               => ['codigo' => (float)$rate->Erro, 'mensagem' => $rate->MsgErro],
                 ];
-
             }
         }
 

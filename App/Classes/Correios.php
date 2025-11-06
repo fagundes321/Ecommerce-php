@@ -75,6 +75,7 @@ class Correios
 
     private function dadosCalcularFrete()
     {
+
         $dados = [
             'tipo'              => $this->tipo, // Separar opções por vírgula (,) caso queira consultar mais de um (1) serviço. > Opções: `sedex`, `sedex_a_cobrar`, `sedex_10`, `sedex_hoje`, `pac`, 'pac_contrato', 'sedex_contrato' , 'esedex'
             'formato'           => $this->formato, // opções: `caixa`, `rolo`, `envelope`
@@ -93,9 +94,11 @@ class Correios
         ];
 
         return $dados;
+        
     }
 
-    public function calcularFrete(){
+    public function calcularFrete()
+    {
         return $this->correios->frete($this->dadosCalcularFrete());
     }
 }

@@ -16,15 +16,15 @@ $(document).ready(function () {
         $.ajax({
             url: '/frete/calcular',
             type: 'post',
-            data: 'frete=' + frete,
+            data: 'frete='+frete,
             dataType: 'json',
             beforeSend: function () {
                 if (frete === '') {
                     mensagem_frete.html('Por favor, informe o CEP.').css('color', 'red');
-                    return;
+                    return false; //
                 }
 
-
+                mensagem_frete.html('Calculando o frete...').css('color', 'black');
 
             },
             success: function (retorno) {
@@ -34,7 +34,6 @@ $(document).ready(function () {
                     return;
                 }
 
-                mensagem_frete.html('Calculando o frete...').css('color', 'black');
             }
         });
 
