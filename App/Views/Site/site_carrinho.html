@@ -64,7 +64,7 @@
                         </div>
                     </td>
 
-                    <td>R$ {{ produto.valor | number_format(2, ',', '.') }}</td>
+                    <td >R$ {{ produto.valor | number_format(2, ',', '.') }}</td>
                     <td>R$ {{ (produto.subtotal) | number_format(2, ',', '.') }}</td>
 
                     <td>
@@ -90,7 +90,7 @@
         <tfoot>
             <tr>
                 <td colspan="3"> 
-                    Total da compra: <span class="price"> R$ {{ valorProdutosCarrinho() | number_format(2, ',', '.')}}</span>
+                    Total da compra: <span class="price" style="color: green;"> R$ {{ valorProdutosCarrinho() | number_format(2, ',', '.')}}</span>
                 <br>
                 Valor do frete: 
                 <br>
