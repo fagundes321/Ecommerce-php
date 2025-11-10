@@ -43,11 +43,11 @@ use Twig\TokenParser\TokenParserInterface;
  */
 class Environment
 {
-    public const VERSION = '3.21.1';
-    public const VERSION_ID = 32101;
+    public const VERSION = '3.22.0';
+    public const VERSION_ID = 32200;
     public const MAJOR_VERSION = 3;
-    public const MINOR_VERSION = 21;
-    public const RELEASE_VERSION = 1;
+    public const MINOR_VERSION = 22;
+    public const RELEASE_VERSION = 0;
     public const EXTRA_VERSION = '';
 
     private $charset;
@@ -113,7 +113,7 @@ class Environment
         $this->setLoader($loader);
 
         $options = array_merge([
-            'debug' => true,
+            'debug' => false,
             'charset' => 'UTF-8',
             'strict_variables' => false,
             'autoescape' => 'html',
@@ -131,9 +131,7 @@ class Environment
         $this->setCache($options['cache']);
         $this->extensionSet = new ExtensionSet();
         $this->defaultRuntimeLoader = new FactoryRuntimeLoader([
-            EscaperRuntime::class => function () {
-                return new EscaperRuntime($this->charset);
-            },
+            EscaperRuntime::class => function () { return new EscaperRuntime($this->charset); },
         ]);
 
         $this->addExtension(new CoreExtension());
@@ -251,7 +249,7 @@ class Environment
     public function removeCache(string $name): void
     {
         $cls = $this->getTemplateClass($name);
-        $this->hotCache[$name] = $cls . '_' . bin2hex(random_bytes(16));
+        $this->hotCache[$name] = $cls.'_'.bin2hex(random_bytes(16));
 
         if ($this->cache instanceof RemovableCacheInterface) {
             $this->cache->remove($name, $cls);
@@ -316,9 +314,9 @@ class Environment
      */
     public function getTemplateClass(string $name, ?int $index = null): string
     {
-        $key = ($this->hotCache[$name] ?? $this->getLoader()->getCacheKey($name)) . $this->optionsHash;
+        $key = ($this->hotCache[$name] ?? $this->getLoader()->getCacheKey($name)).$this->optionsHash;
 
-        return '__TwigTemplate_' . hash(\PHP_VERSION_ID < 80100 ? 'sha256' : 'xxh128', $key) . (null === $index ? '' : '___' . $index);
+        return '__TwigTemplate_'.hash(\PHP_VERSION_ID < 80100 ? 'sha256' : 'xxh128', $key).(null === $index ? '' : '___'.$index);
     }
 
     /**
@@ -391,7 +389,7 @@ class Environment
     {
         $mainCls = $cls;
         if (null !== $index) {
-            $cls .= '___' . $index;
+            $cls .= '___'.$index;
         }
 
         if (isset($this->loadedTemplates[$cls])) {
@@ -419,7 +417,7 @@ class Environment
                      * where the cache was cleared between the above calls to write to and load from
                      * the cache.
                      */
-                    eval('?>' . $content);
+                    eval('?>'.$content);
                 }
 
                 if (!class_exists($cls, false)) {
@@ -827,6 +825,14 @@ class Environment
     public function getTest(string $name): ?TwigTest
     {
         return $this->extensionSet->getTest($name);
+    }
+
+    /**
+     * @param callable(string): (TwigTest|false) $callable
+     */
+    public function registerUndefinedTestCallback(callable $callable): void
+    {
+        $this->extensionSet->registerUndefinedTestCallback($callable);
     }
 
     /**
