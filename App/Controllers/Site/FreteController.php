@@ -44,3 +44,6 @@ class FreteController extends BaseController
         exit;
     }
 }
+
+
+
