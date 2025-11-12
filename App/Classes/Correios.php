@@ -2,45 +2,37 @@
 
 namespace App\Classes;
 
-use Cagartner\CorreiosConsulta\CorreiosConsulta;
+use GuzzleHttp\Client;
 
 class Correios
 {
-
-    private $tipo;
-    private $formato;
+    private $token;
     private $cepDestino;
     private $cepOrigem;
     private $peso;
     private $comprimento;
     private $altura;
     private $largura;
-    private $diametro;
-    private $correios;
+    private $melhorEnvios;
 
     public function __construct()
     {
-        $this->correios = new CorreiosConsulta();
+        $this->melhorEnvios = new Client();
     }
 
-    public function setTipo($tipo)
+    public function setToken($token)
     {
-        $this->tipo = $tipo;
-    }
-
-    public function setFormato($formato)
-    {
-        $this->formato = $formato;
-    }
-
-    public function setCepDestino($cepDestino)
-    {
-        $this->cepDestino = $cepDestino;
+        $this->token = $token;
     }
 
     public function setCepOrigem($cepOrigem)
     {
         $this->cepOrigem = $cepOrigem;
+    }
+
+    public function setCepDestino($cepDestino)
+    {
+        $this->cepDestino = $cepDestino;
     }
 
     public function setPeso($peso)
@@ -63,42 +55,37 @@ class Correios
         $this->largura = $largura;
     }
 
-    public function setDiametro($diametro)
-    {
-        $this->diametro = $diametro;
-    }
-
-    public function setCorreios($correios)
-    {
-        $this->correios = $correios;
-    }
-
     private function dadosCalcularFrete()
     {
-
-        $dados = [
-            'tipo'              => $this->tipo, // Separar opções por vírgula (,) caso queira consultar mais de um (1) serviço. > Opções: `sedex`, `sedex_a_cobrar`, `sedex_10`, `sedex_hoje`, `pac`, 'pac_contrato', 'sedex_contrato' , 'esedex'
-            'formato'           => $this->formato, // opções: `caixa`, `rolo`, `envelope`
-            'cep_destino'       => $this->cepDestino, // Obrigatório
-            'cep_origem'        => $this->cepOrigem, // Obrigatorio
-            //'empresa'         => '', // Código da empresa junto aos correios, não obrigatório.
-            //'senha'           => '', // Senha da empresa junto aos correios, não obrigatório.
-            'peso'              => $this->peso, // Peso em kilos
-            'comprimento'       => $this->comprimento, // Em centímetros
-            'altura'            => $this->altura, // Em centímetros
-            'largura'           => $this->largura, // Em centímetros
-            'diametro'          => $this->diametro, // Em centímetros, no caso de rolo
-            // 'mao_propria'       => '1', // Náo obrigatórios
-            // 'valor_declarado'   => '1', // Náo obrigatórios
-            // 'aviso_recebimento' => '1', // Náo obrigatórios
+        $body = [
+            'from' => ['postal_code' => $this->cepOrigem],
+            'to'   => ['postal_code' => $this->cepDestino],
+            'products' => [[
+                'width'  => (float) $this->largura,
+                'height' => (float) $this->altura,
+                'length' => (float) $this->comprimento,
+                'weight' => (float) $this->peso,
+                'quantity' => 1,
+                'insurance_value' => 0
+            ]]
         ];
 
-        return $dados;
-        
+        $response = $this->melhorEnvios->request('POST', 'https://www.melhorenvio.com.br/api/v2/me/shipment/calculate', [
+            'headers' => [
+                'Accept'        => 'application/json',
+                'Authorization' => 'Bearer ' . $this->token,
+                'Content-Type'  => 'application/json',
+                'User-Agent'    => 'MinhaAplicacao (email@exemplo.com)',
+            ],
+            'json' => $body,
+            'http_errors' => false, // evita exception em erro HTTP
+        ]);
+
+        return json_decode($response->getBody()->getContents(), true);
     }
 
     public function calcularFrete()
     {
-        return $this->correios->frete($this->dadosCalcularFrete());
+        return $this->dadosCalcularFrete();
     }
 }
