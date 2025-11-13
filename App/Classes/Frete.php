@@ -2,29 +2,38 @@
 
 namespace App\Classes;
 
-class Frete{
-
-    private function calculouFrete(){
-        if(!isset($_SESSION['frete']) || $_SESSION['frete'] != true){
-            return false;
-        }
-        return true;
+class Frete
+{
+    private function calculouFrete()
+    {
+        // só considera que tem frete se as duas chaves existirem
+        return isset($_SESSION['frete'], $_SESSION['valor_frete'])
+            && $_SESSION['frete'] === true;
     }
 
-    public function gravarFrete(){
+    // grava o valor do frete na sessão
+    public function gravarFrete($valorFrete)
+    {
+        // garante que é numérico
+        $valor = (float) str_replace(',', '.', $valorFrete);
+
         $_SESSION['frete'] = true;
-        $_SESSION['valor'] = $frete;
+        $_SESSION['valor_frete'] = $valor;
     }
 
-    public function pegarFrete(){
-        if($this->calculouFrete()){
-            return $_SESSION['valor'];
+    // pega o valor do frete gravado
+    public function pegarFrete()
+    {
+        if ($this->calculouFrete()) {
+            return $_SESSION['valor_frete'];
         }
+
+        // se não tiver frete gravado, retorna 0
         return 0;
     }
 
-    public function limparFrete(){
-        unset($_SESSION['frete']);
-        unset($_SESSION['valor']);
+    public function limparFrete()
+    {
+        unset($_SESSION['frete'], $_SESSION['valor_frete']);
     }
 }

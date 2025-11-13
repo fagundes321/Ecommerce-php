@@ -15,6 +15,7 @@ $(document).ready(function () {
         });
     }
 
+    // clique no botão "Calcular frete"
     btn_calcular_frete.on('click', function (event) {
         event.preventDefault();
 
@@ -25,7 +26,9 @@ $(document).ready(function () {
             return;
         }
 
-        mensagem_frete.html('Calculando o frete <img src="/public/assets/images/icons/reload.gif" style="width: 15px;"  >').css('color', 'black');
+        mensagem_frete
+            .html('Calculando o frete <img src="/public/assets/images/icons/reload.gif" style="width: 15px;">')
+            .css('color', 'black');
 
         $.ajax({
             url: '/frete/calcular',
@@ -36,18 +39,18 @@ $(document).ready(function () {
                 console.log('Resposta do servidor:', retorno);
 
                 // ⚠️ Erros personalizados do backend
-                if (retorno.erro === 'produto') {
+                if (retorno && retorno.erro === 'produto') {
                     mensagem_frete.html('Você precisa ter produtos no carrinho.').css('color', 'red');
                     return;
                 }
 
-                if (retorno.erro === 'cep_invalido') {
+                if (retorno && retorno.erro === 'cep_invalido') {
                     mensagem_frete.html('CEP inválido.').css('color', 'red');
                     return;
                 }
 
                 // ⚠️ Erros do Melhor Envio
-                if (retorno.errors) {
+                if (retorno && retorno.errors) {
                     const primeiroCampo = Object.keys(retorno.errors)[0];
                     let msgErro = retorno.errors[primeiroCampo][0];
 
@@ -66,7 +69,7 @@ $(document).ready(function () {
                             font-weight:bold;
                             font-size:14px;
                         ">
-                            Opções de frete encontradas: 
+                            Opções de frete encontradas:
                         </div>
                         <div class="frete-opcoes-container" style="
                             display:flex;
@@ -75,9 +78,10 @@ $(document).ready(function () {
                         ">
                     `;
 
-                    retorno.slice(0, 3).forEach(function (servico) {
+                    retorno.slice(0, 3).forEach(function (servico, index) {
                         const imagem = servico.company?.picture || '';
-                        const preco = formatBRL(servico.price || '0');
+                        const precoBruto = servico.price || '0';
+                        const preco = formatBRL(precoBruto);
                         const nome = servico.name || 'Serviço';
                         const empresa = servico.company?.name || 'Transportadora';
 
@@ -86,7 +90,7 @@ $(document).ready(function () {
                             : (servico.delivery_time ? `${servico.delivery_time} dias úteis` : 'Prazo indisponível');
 
                         html += `
-                            <div class="frete-opcao" style="
+                            <label class="frete-opcao" style="
                                 display:flex;
                                 align-items:center;
                                 gap:12px;
@@ -95,15 +99,17 @@ $(document).ready(function () {
                                 border-radius:8px;
                                 background:#fafafa;
                                 box-shadow:0 1px 3px rgba(0,0,0,0.05);
+                                cursor:pointer;
                             ">
                                 <input 
                                     type="radio" 
                                     name="frete_opcao" 
                                     value="${servico.id}"
                                     data-nome="${nome}"
-                                    data-preco="${servico.price}"
+                                    data-preco="${precoBruto}"
                                     data-prazo="${prazo}"
                                     style="margin-right:8px;"
+                                    ${index === 0 ? 'checked' : ''}
                                 >
 
                                 ${imagem
@@ -132,7 +138,7 @@ $(document).ready(function () {
                                         <strong>Prazo:</strong> ${prazo}
                                     </span>
                                 </div>
-                            </div>
+                            </label>
                         `;
                     });
 
@@ -143,7 +149,7 @@ $(document).ready(function () {
                 }
 
                 // ✅ Caso o retorno seja objeto com "message"
-                if (typeof retorno === 'object' && retorno.message) {
+                if (typeof retorno === 'object' && retorno !== null && retorno.message) {
                     mensagem_frete.html(retorno.message).css('color', 'red');
                     return;
                 }
@@ -154,6 +160,39 @@ $(document).ready(function () {
             error: function (xhr, status, error) {
                 console.error('Erro:', error);
                 mensagem_frete.html('Erro ao conectar com o servidor.').css('color', 'red');
+            }
+        });
+    });
+
+    // quando o usuário selecionar uma opção de frete
+    $(document).on('change', 'input[name="frete_opcao"]', function () {
+        const radio = $(this);
+        const preco = radio.data('preco');
+        const nome = radio.data('nome');
+        const prazo = radio.data('prazo');
+
+        console.log('Frete selecionado:', { preco, nome, prazo });
+
+        // opcional: feedback na própria div
+        // (limpa mensagens antigas extra e adiciona uma linha de confirmação)
+        $('.frete-opcao-selecionada-msg').remove();
+        mensagem_frete.append(
+            `<div class="frete-opcao-selecionada-msg" style="margin-top:6px; font-size:12px; color:#555;">
+                Frete selecionado: ${formatBRL(preco)} — ${prazo}
+             </div>`
+        );
+
+        // envia para o backend gravar na sessão
+        $.ajax({
+            url: '/frete/selecionar',
+            type: 'POST',
+            dataType: 'json',
+            data: { preco: preco },
+            success: function (resp) {
+                console.log('Frete gravado na sessão:', resp);
+            },
+            error: function () {
+                console.error('Erro ao gravar frete');
             }
         });
     });
