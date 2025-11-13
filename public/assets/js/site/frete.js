@@ -4,6 +4,17 @@ $(document).ready(function () {
     var input_frete = center_content.find('#input-frete');
     var mensagem_frete = center_content.find('#mensagem-frete');
 
+    // helper pra formatar preço
+    function formatBRL(valor) {
+        const n = Number(valor);
+        if (isNaN(n)) return 'R$ 0,00';
+        return n.toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+            minimumFractionDigits: 2
+        });
+    }
+
     btn_calcular_frete.on('click', function (event) {
         event.preventDefault();
 
@@ -14,7 +25,7 @@ $(document).ready(function () {
             return;
         }
 
-        mensagem_frete.html('Calculando o frete...').css('color', 'black');
+        mensagem_frete.html('Calculando o frete <img src="/public/assets/images/icons/reload.gif" style="width: 15px;"  >').css('color', 'black');
 
         $.ajax({
             url: '/frete/calcular',
@@ -38,26 +49,96 @@ $(document).ready(function () {
                 // ⚠️ Erros do Melhor Envio
                 if (retorno.errors) {
                     const primeiroCampo = Object.keys(retorno.errors)[0];
-                    let msgErro = retorno.errors[primeiroCampo][0]; // muda para let
+                    let msgErro = retorno.errors[primeiroCampo][0];
 
-                    // 🔹 Remove o trecho “to.postal_code” (ou qualquer campo similar)
+                    // tira o nome do campo técnico e troca por "CEP"
                     msgErro = msgErro.replace(/\b[a-z_\.]*postal_code\b/gi, 'CEP').trim();
 
                     mensagem_frete.html(msgErro).css('color', 'red');
                     return;
                 }
 
-
-                // ✅ Resposta de sucesso (array de serviços)
+                // ✅ Resposta de sucesso (array de serviços) – até 3 opções
                 if (Array.isArray(retorno) && retorno.length > 0) {
-                    const servico = retorno[0];
-                    const imagem = Object.keys(servico.company)[2]
-                    let imagemCorreios = servico.company[imagem]
-                    mensagem_frete.html(
-                        '<img src=' + imagemCorreios + '> ' +
-                        '<br>Serviço: ' + (servico.name || 'Desconhecido') +
-                        '<br>Preço: R$ ' + (servico.price || '0,00')
-                    ).css('color', 'green');
+                    let html = `
+                        <div style="
+                            margin-bottom:8px;
+                            font-weight:bold;
+                            font-size:14px;
+                        ">
+                            Opções de frete encontradas: 
+                        </div>
+                        <div class="frete-opcoes-container" style="
+                            display:flex;
+                            flex-direction:column;
+                            gap:10px;
+                        ">
+                    `;
+
+                    retorno.slice(0, 3).forEach(function (servico) {
+                        const imagem = servico.company?.picture || '';
+                        const preco = formatBRL(servico.price || '0');
+                        const nome = servico.name || 'Serviço';
+                        const empresa = servico.company?.name || 'Transportadora';
+
+                        const prazo = servico.custom_delivery_range
+                            ? `${servico.custom_delivery_range.min}–${servico.custom_delivery_range.max} dias úteis`
+                            : (servico.delivery_time ? `${servico.delivery_time} dias úteis` : 'Prazo indisponível');
+
+                        html += `
+                            <div class="frete-opcao" style="
+                                display:flex;
+                                align-items:center;
+                                gap:12px;
+                                padding:10px 12px;
+                                border:1px solid #ddd;
+                                border-radius:8px;
+                                background:#fafafa;
+                                box-shadow:0 1px 3px rgba(0,0,0,0.05);
+                            ">
+                                <input 
+                                    type="radio" 
+                                    name="frete_opcao" 
+                                    value="${servico.id}"
+                                    data-nome="${nome}"
+                                    data-preco="${servico.price}"
+                                    data-prazo="${prazo}"
+                                    style="margin-right:8px;"
+                                >
+
+                                ${imagem
+                                    ? `<img src="${imagem}" alt="${empresa}" style="height:28px; flex-shrink:0;">`
+                                    : `<div style="
+                                          width:28px;
+                                          height:28px;
+                                          border-radius:50%;
+                                          background:#eee;
+                                          display:flex;
+                                          align-items:center;
+                                          justify-content:center;
+                                          font-size:14px;
+                                      ">
+                                          🚚
+                                      </div>`
+                                }
+                                <div style="display:flex; flex-direction:column; gap:2px;">
+                                    <span style="font-weight:600; font-size:14px;">
+                                        ${empresa} — ${nome}
+                                    </span>
+                                    <span style="font-size:13px; color:#333;">
+                                        <strong>Preço:</strong> ${preco}
+                                    </span>
+                                    <span style="font-size:12px; color:#666;">
+                                        <strong>Prazo:</strong> ${prazo}
+                                    </span>
+                                </div>
+                            </div>
+                        `;
+                    });
+
+                    html += `</div>`;
+
+                    mensagem_frete.html(html).css('color', 'black');
                     return;
                 }
 

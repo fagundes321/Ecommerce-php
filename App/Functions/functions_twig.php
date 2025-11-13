@@ -6,6 +6,7 @@ use App\Classes\BreadCrumb;
 use App\Repositories\Site\CategoriaRepository;
 use App\Repositories\Site\ProdutosCarrinhoRepository;
 use App\Classes\Carrinho;
+use App\Classes\Frete;
 
 /**
  * Função Twig: site_url
@@ -74,6 +75,17 @@ $valorProdutosCarrinho = new TwigFunction('valorProdutosCarrinho', function () {
 $numeroProdutosCarrinho = new TwigFunction('numeroProdutosCarrinho', function () {
     $produtosCarrinho =  new Carrinho;
     return $produtosCarrinho->produtosCarrinho();
+});
+
+
+/**
+ * Função : Pegar Dados do Frete
+ * Retorna os dados do Frete.
+ * 
+ */
+$dadosFrete = new TwigFunction('dadosFrete', function () {
+    return  new Frete;
+
 });
 
 

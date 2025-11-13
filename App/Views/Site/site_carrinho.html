@@ -42,8 +42,8 @@
             {% for produto in produtos %}
                 <tr>
                     <td>{{ produto.produtos.produto_nome }}</td>
-
-                    <td>
+                    
+                    <td >
                         <div class="ui form">
                             <div class="inline field" style="display: flex; align-items: center; gap: 8px;">
                                 <input 
@@ -88,22 +88,24 @@
             {% endfor %}
         </tbody>
         <tfoot>
-            <tr>
-                <td colspan="3"> 
-                    Total da compra: <span class="price" style="color: green;"> R$ {{ valorProdutosCarrinho() | number_format(2, ',', '.')}}</span>
-                <br>
-                Valor do frete: 
-                <br>
-                Valor total da compra:
-                </td>
-            </tr>
-            <tr>
+                <tr>
+                
                 <td colspan="5">
                     <input type="text" name="frete" id="input-frete" placeholder="Digite o Cep para entrega">
                     <button id="btn-calcular-frete">Calcular frete</button>
                     <div id="mensagem-frete"></div>
                 </td>  
             </tr>
+            <tr>
+                <td colspan="3"> 
+                    Total da compra: <span class="price" style="color: green;"> R$ {{ valorProdutosCarrinho() | number_format(2, ',', '.')}}</span>
+                <br>
+                Valor do frete: R$ {{dadosFrete().pegarFrete()}}
+                <br>
+                Valor total da compra:
+                </td>
+            </tr>
+        
         </tfoot>
     </table>
 </div>
