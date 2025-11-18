@@ -49,6 +49,10 @@ $(document).ready(function () {
                     return;
                 }
 
+                if(retorno.erro == 'nao'){
+                    location.reload();
+                }
+
                 // ⚠️ Erros do Melhor Envio
                 if (retorno && retorno.errors) {
                     const primeiroCampo = Object.keys(retorno.errors)[0];

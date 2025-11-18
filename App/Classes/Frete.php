@@ -27,7 +27,7 @@ class Frete
         if ($this->calculouFrete()) {
             return $_SESSION['valor_frete'];
         }
-
+        var_dump($this->calculouFrete());
         // se não tiver frete gravado, retorna 0
         return 0;
     }
