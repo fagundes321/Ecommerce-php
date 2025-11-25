@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block site_content %}
+    <div class="main-detalhes container py-5 pt-8 pb-8">
+        <h2>Login do Usuário</h2>
+
+        <form action="/login/logar" method="post">
+            <label for="email">E-mail</label>
+            <input type="text" name="email" placeholder="Email">
+
+            <label for="email">Senha</label>
+            <input type="password" name="password" placeholder="Password">
+
+            <button type="submit">Logar</button>
+        </form>
+    </div>
+{% endblock %}
