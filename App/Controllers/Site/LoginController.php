@@ -3,11 +3,13 @@
 namespace App\Controllers\Site;
 
 use App\Controllers\BaseController;
+use App\Classes\Password;
 
 class LoginController extends BaseController{
 
     public function index(){
-              $dados = [
+
+        $dados = [
             'titulo' => 'InovaTech | Loja Virtual',
             'nome'   => 'Victor',
           
