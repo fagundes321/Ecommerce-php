@@ -7,19 +7,31 @@ use App\Classes\Login;
 use App\Classes\Filters;
 use App\Models\Site\UserLogin;
 use App\Classes\Redirect;
+use App\Classes\Logado;
 
 class LoginController extends BaseController
 {
+    private $redirect;
+
+
+    public function __construct()
+    {
+        $this->redirect = new Redirect();
+    }
 
     public function index()
     {
+        $logado = new Logado();
 
+        if($logado->logado()){
+            $this->redirect->redirect("/");
+        }
         $dados = [
             'titulo' => 'InovaTech | Loja Virtual',
             'nome'   => 'Victor',
 
         ];
-
+        
 
         echo $this->twig->render('site_login.html', $dados);
     }
@@ -29,7 +41,6 @@ class LoginController extends BaseController
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
             $filter = new Filters();
-            $redirect = new Redirect;
 
             $email = $filter->filter('email', 'string');
             $password = $filter->filter('password', 'string');
@@ -39,9 +50,9 @@ class LoginController extends BaseController
             $login->setPassword($_POST['password']);
 
             if ($login->logar(new userLogin())) {
-                return $redirect->redirect('/');
+                return $this->redirect->redirect('/');
             } else {
-                return $redirect->redirect('/login');
+                return $this->redirect->redirect('/login');
             }
             return $redirect->redirect('/');
         }
@@ -49,8 +60,11 @@ class LoginController extends BaseController
 
     public function logout(){
         $redirect = new Redirect;
+        unset( $_SESSION['id'] );
+        unset( $_SESSION['name'] );
         unset( $_SESSION['logado'] );
-        unset($_SESSION['carrinho']);
+        // unset($_SESSION['carrinho']);
+        // session_destroy();
         return $redirect->redirect('/');
     }
 }
