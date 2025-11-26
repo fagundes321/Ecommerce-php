@@ -38,6 +38,10 @@ $(document).ready(function () {
             success: function (retorno) {
                 console.log('Resposta do servidor:', retorno);
 
+                if(retorno == 'login'){
+                    window.location.href = '/login';
+                }
+
                 // ⚠️ Erros personalizados do backend
                 if (retorno && retorno.erro === 'produto') {
                     mensagem_frete.html('Você precisa ter produtos no carrinho.').css('color', 'red');

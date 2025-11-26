@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Repositories\Site\ProdutosCarrinhoRepository;
 use App\Classes\Correios;
 use App\Classes\Frete;
+use App\Classes\Logado;
 
 class FreteController extends BaseController
 {
@@ -21,6 +22,13 @@ class FreteController extends BaseController
     public function calcular()
     {
         $produtosCarrinho = $this->produtoCarrinhoRepository->produtosNoCarrinho();
+
+        $logado = new Logado();
+
+        if(!$logado){
+            echo json_encode('login');
+            die();
+        }
 
         if (empty($produtosCarrinho)) {
             echo json_encode(['erro' => 'produto']);
