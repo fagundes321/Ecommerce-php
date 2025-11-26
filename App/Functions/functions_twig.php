@@ -7,6 +7,8 @@ use App\Repositories\Site\CategoriaRepository;
 use App\Repositories\Site\ProdutosCarrinhoRepository;
 use App\Classes\Carrinho;
 use App\Classes\Frete;
+use App\Classes\Logado;
+use App\Models\Site\UserModel;
 
 /**
  * Função Twig: site_url
@@ -78,13 +80,39 @@ $numeroProdutosCarrinho = new TwigFunction('numeroProdutosCarrinho', function ()
 });
 
 
+
+
 /**
  * Função : Pegar Dados do Frete
  * Retorna os dados do Frete.
  * 
- */
+*/
 $dadosFrete = new TwigFunction('dadosFrete', function () {
     return  new Frete;
+    
+});
+
+/**
+ * Função : Verifica se o usuario está logado
+ * Retorna os dados do usuario
+ * 
+ */
+$logado = new TwigFunction('logado', function () {
+    $logado =  new Logado();
+    return $logado->logado();
+});
+
+/**
+ * Função : Dados do usuario
+ * Retorna os dados do usuario.
+ * 
+ */
+$user = new TwigFunction('user', function () {
+    $userModel = new UserModel;
+    $logado = new Logado;
+        if($logado->logado()){
+            return $userModel->find('id', $_SESSION['id']);
+        }
 
 });
 

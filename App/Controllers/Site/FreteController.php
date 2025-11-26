@@ -25,7 +25,7 @@ class FreteController extends BaseController
 
         $logado = new Logado();
 
-        if(!$logado){
+        if(!$logado->logado()){
             echo json_encode('login');
             die();
         }

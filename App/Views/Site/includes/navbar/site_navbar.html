@@ -58,7 +58,20 @@
                         <i class="bi bi-search"></i>
                     </button>
                 </form>
-                <a href="/login" class="icon-btn"><i class="bi bi-person"></i></a>
+                <a href="/login" class="icon-btn"
+                    ><i class="bi bi-person"></i>
+                    {% if logado() %} 
+                        <div class="login-user">
+                            {{ user().name }} {{user().sobrenome}}
+                        </div>
+                        {% else %} 
+                        <div class="login-user">
+                            Entrar / Cadastrar 
+                        </div>
+                        {% endif %}
+                </a>
+
+                {% if numeroProdutosCarrinho() %}
                 <a href="/carrinho" class="icon-btn position-relative">
                     <i class="bi bi-cart"></i>
                     <span
@@ -67,13 +80,25 @@
                         style="font-size: 0.6em"
                     >
                         {{ numeroProdutosCarrinho() | array_sum }}
-
-
+                       
                     </span>
-                    <span class="price ms-1 small" style="display: none"
-                        >R$ 0,00</span
-                    >
+                    <!-- <div class="login-user">
+                         R$ {{ valorProdutosCarrinho() | number_format(2, ',', '.')}}
+                    </div> -->
                 </a>
+                {% else %}
+                <a href="/carrinho" class="icon-btn position-relative">
+                    <i class="bi bi-cart"></i>
+                </a>
+                {% endif %}
+
+                {% if logado() %}
+                    <a href="/login/logout" class="button-logout">
+                        <div class="icon-logout">
+                            <i class="bi bi-box-arrow-right"></i>
+                        </div>
+                    </a>
+                {% endif %}
             </div>
         </div>
     </div>

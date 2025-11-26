@@ -46,4 +46,11 @@ class LoginController extends BaseController
             return $redirect->redirect('/');
         }
     }
+
+    public function logout(){
+        $redirect = new Redirect;
+        unset( $_SESSION['logado'] );
+        unset($_SESSION['carrinho']);
+        return $redirect->redirect('/');
+    }
 }

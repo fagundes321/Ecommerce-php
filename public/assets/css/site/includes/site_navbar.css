@@ -222,6 +222,28 @@
     font-size: 1.2rem;
     margin-left: 1rem;
     transition: color 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    /* flex-direction: column; */
+}
+
+.button-logout{
+    color: #ccc;
+    font-size: 1.3rem;
+    margin-left: 1rem;
+    transition: color 0.3s ease;
+    text-decoration: none;
+    display: flex;
+}
+
+.button-logout:hover{
+    color: red;
+}
+
+.login-user{
+    font-size: 15px;
+    margin-top: 3px;
+    margin-left: 5px;
 }
 
 .navbar-premium .icon-btn:hover {

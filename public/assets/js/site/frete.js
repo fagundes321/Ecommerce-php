@@ -205,3 +205,25 @@ $(document).ready(function () {
         });
     });
 });
+
+$.ajax({
+    url: '/carrinho/adicionar',
+    type: 'POST',
+    data: { id: produtoID, qtd: quantidade },
+    dataType: 'json',
+
+    success: function (retorno) {
+
+        if (retorno.sucesso) {
+
+            // Atualiza contador do carrinho
+            $("#products_cart").text(retorno.total_produtos);
+
+            // Exibe o badge se estiver oculto
+            $("#products_cart").show();
+
+            // opcional: efeito visual bonito
+            $("#products_cart").addClass('animate__animated animate__bounceIn');
+        }
+    }
+});
