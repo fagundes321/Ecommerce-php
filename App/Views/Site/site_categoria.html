@@ -1,0 +1,102 @@
+{% extends 'layout.html' %}
+
+{% block site_content %}
+<div class="container py-4">
+    <h2 class="mt-5 mb-5">Resultados da Pesquisa: {{  }}</h2>
+     <!-- {{breadCrumb() | raw}} -->
+<div class="">
+    <div class=" busca-container   ">
+        {% if produto|length == 0 %}
+            Nenhum produto encontrado para a sua busca
+        {% endif %}
+        {% for produto in produto %}
+        <a href="/detalhes/{{ produto.produto_slug}}" class="produto-link ">
+            <div class="busca-produtos">
+                <img
+                    src="/public/assets/images/produtos/{{ produto.produto_slug }}.png"
+                    alt="{{ produto.produto_nome }}"
+                    loading="eager"
+                />
+
+                <h3 class="titulo-produto">{{ produto.produto_nome }}</h3>
+                {% if produto.produto_valor_promocao == null %}
+                <h5 class="produto_preco">R$ {{ produto.produto_valor }}</h5>
+                {% else %}
+                <h5 class="produto_preco">
+                    R$ {{ produto.produto_valor_promocao }} à vista
+                </h5>
+                <h5 class="produto_real">R$ {{ produto.produto_valor }}</h5>
+                {% endif %}
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    
+</div>
+
+<style>
+.produtos-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.produto-linha {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.produto-img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.produto-detalhes {
+    flex: 1;
+}
+
+.produto-detalhes h5 {
+    margin: 0 0 0.5rem 0;
+    color: #333;
+}
+
+.preco-promo {
+    color: #0071e3;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.preco-original {
+    color: #999;
+    text-decoration: line-through;
+    margin-left: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.preco-normal {
+    color: #0071e3;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.btn-ver {
+    background: #0071e3;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.btn-ver:hover {
+    background: #0056b3;
+    color: white;
+    text-decoration: none;
+}
+</style>
+{% endblock %}
