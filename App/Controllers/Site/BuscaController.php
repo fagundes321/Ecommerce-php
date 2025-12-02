@@ -39,13 +39,14 @@ class BuscaController extends BaseController
 
         // Consulta os produtos no repositório
         $produtosEncontrados = $this->produto->buscarProduto($busca); 
+        // dump($produtosEncontrados);
 
         // Monta array de dados para a view
         $dados = [
             'busca'   => $busca,
             'produto' => $produtosEncontrados
         ]; 
-
+  
         // Renderiza a view Twig passando os dados
         echo $this->twig->render('site_busca.html', $dados);
     }
